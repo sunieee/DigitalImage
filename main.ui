@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1244</width>
+    <height>761</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>17</width>
+        <height>3</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>输入</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>输出</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>600</width>
+          <height>630</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times New Roman</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="acceptDrops">
+         <bool>false</bool>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="tabsClosable">
+         <bool>true</bool>
+        </property>
+        <property name="movable">
+         <bool>true</bool>
+        </property>
+        <property name="tabBarAutoHide">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="tab">
+         <property name="font">
+          <font>
+           <family>Times New Roman</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <attribute name="title">
+          <string>Default</string>
+         </attribute>
+         <widget class="QLabel" name="label_4">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>711</width>
+            <height>621</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>test.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_3">
+          <property name="geometry">
+           <rect>
+            <x>240</x>
+            <y>270</y>
+            <width>141</width>
+            <height>71</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>请打开一张图片</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="tabWidgetR">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>600</width>
+          <height>630</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Times New Roman</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="tabsClosable">
+         <bool>true</bool>
+        </property>
+        <property name="movable">
+         <bool>true</bool>
+        </property>
+        <property name="tabBarAutoHide">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="tab_2">
+         <property name="font">
+          <font>
+           <family>Times New Roman</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <attribute name="title">
+          <string>Default</string>
+         </attribute>
+         <widget class="QLabel" name="label_5">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>-10</y>
+            <width>671</width>
+            <height>641</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>test1.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_7">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>17</width>
+        <height>3</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1244</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="open"/>
+    <addaction name="save"/>
+    <addaction name="saveR"/>
+    <addaction name="close"/>
+    <addaction name="closeR"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>输出</string>
+    </property>
+    <addaction name="add"/>
+    <addaction name="reverse"/>
+    <addaction name="move"/>
+    <addaction name="separator"/>
+    <addaction name="rotate"/>
+    <addaction name="enlarge"/>
+    <addaction name="shrink"/>
+    <addaction name="scale"/>
+    <addaction name="separator"/>
+    <addaction name="histogram"/>
+   </widget>
+   <widget class="QMenu" name="menuFFT">
+    <property name="title">
+     <string>FFT</string>
+    </property>
+    <addaction name="FFT"/>
+    <addaction name="separator"/>
+    <addaction name="high"/>
+    <addaction name="low"/>
+    <addaction name="separator"/>
+    <addaction name="reconstruct"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>边缘检测</string>
+    </property>
+    <addaction name="Roberts"/>
+    <addaction name="Sobel"/>
+    <addaction name="Prewitt"/>
+    <addaction name="Scharr"/>
+    <addaction name="Laplacian"/>
+    <addaction name="Log"/>
+    <addaction name="Canny"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>输入</string>
+    </property>
+    <addaction name="grey"/>
+    <addaction name="resize"/>
+    <addaction name="resizeAll"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_2"/>
+   <addaction name="menuFFT"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <action name="open">
+   <property name="text">
+    <string>打开</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="save">
+   <property name="text">
+    <string>导出当前输入</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="saveR">
+   <property name="text">
+    <string>导出当前输入</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="close">
+   <property name="text">
+    <string>关闭当前输入</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="add">
+   <property name="text">
+    <string>加（所有打开的图像）</string>
+   </property>
+  </action>
+  <action name="reverse">
+   <property name="text">
+    <string>求反</string>
+   </property>
+  </action>
+  <action name="rotate">
+   <property name="text">
+    <string>逆时针旋转</string>
+   </property>
+  </action>
+  <action name="histogram">
+   <property name="text">
+    <string>直方图均衡化</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="FFT">
+   <property name="text">
+    <string>傅里叶变换(输出DFT/增强/反变换图)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="a1D_FFT_center">
+   <property name="text">
+    <string>1D-FFT（低频中心）</string>
+   </property>
+  </action>
+  <action name="high">
+   <property name="text">
+    <string>高通滤波</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+H</string>
+   </property>
+  </action>
+  <action name="enlarge">
+   <property name="text">
+    <string>放大2倍</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+=</string>
+   </property>
+  </action>
+  <action name="shrink">
+   <property name="text">
+    <string>缩小2倍</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+-</string>
+   </property>
+  </action>
+  <action name="scale">
+   <property name="text">
+    <string>等比缩放到...</string>
+   </property>
+  </action>
+  <action name="fouriour">
+   <property name="text">
+    <string>傅里叶描述子</string>
+   </property>
+  </action>
+  <action name="reconstruct">
+   <property name="text">
+    <string>傅里叶描述子M项数重构（输出描述子/重构轮廓）</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="Roberts">
+   <property name="text">
+    <string>Roberts</string>
+   </property>
+  </action>
+  <action name="Sobel">
+   <property name="text">
+    <string>Sobel</string>
+   </property>
+  </action>
+  <action name="Prewitt">
+   <property name="text">
+    <string>Prewitt</string>
+   </property>
+  </action>
+  <action name="Laplacian">
+   <property name="text">
+    <string>Laplacian</string>
+   </property>
+  </action>
+  <action name="resize">
+   <property name="text">
+    <string>等比缩放到适应窗口</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="resizeAll">
+   <property name="text">
+    <string>全部等比缩放到适应</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
+   </property>
+  </action>
+  <action name="blend">
+   <property name="text">
+    <string>混合（所有打开的图像）</string>
+   </property>
+  </action>
+  <action name="move">
+   <property name="text">
+    <string>平移</string>
+   </property>
+  </action>
+  <action name="closeR">
+   <property name="text">
+    <string>关闭当前输出</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
+  </action>
+  <action name="r1D_FFT">
+   <property name="text">
+    <string>逆傅里叶变换</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F</string>
+   </property>
+  </action>
+  <action name="r1D_FFT_center">
+   <property name="text">
+    <string>逆1D-FFT（低频中心）</string>
+   </property>
+  </action>
+  <action name="gray">
+   <property name="text">
+    <string>转为灰度图</string>
+   </property>
+  </action>
+  <action name="grey">
+   <property name="text">
+    <string>转为灰度图</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="low">
+   <property name="text">
+    <string>低通滤波</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+L</string>
+   </property>
+  </action>
+  <action name="Scharr">
+   <property name="text">
+    <string>Scharr</string>
+   </property>
+  </action>
+  <action name="Log">
+   <property name="text">
+    <string>Log</string>
+   </property>
+  </action>
+  <action name="Canny">
+   <property name="text">
+    <string>Canny</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
