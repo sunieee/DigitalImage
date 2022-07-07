@@ -9,7 +9,10 @@ from PIL import Image, ImageQt
 import threading
 import numpy as np
 from util import *
+from LineExtraction.tailor import Tailor
+from LineExtraction.seperate import Seperator
 import cv2
+import time
 
 
 font1 = QFont()
@@ -18,6 +21,21 @@ font1.setPointSize(12)
 base_folder = os.path.join(os.path.expanduser("~"), 'Desktop')
 if os.path.exists(base_folder + '/file'):
     base_folder += '/file'
+if os.path.exists(base_folder + '/photo/src/LineExtraction/data'):
+    base_folder += '/photo/src/LineExtraction/data'
+
+
+cache_folder = os.path.join(os.path.expanduser("~"), 'AppData/Roaming/DigitalImage')
+os.makedirs(cache_folder, exist_ok=True)
+
+def generate_name():
+    name = time.strftime("%Y%m%d%H%M%S", time.localtime())
+    path = f"{cache_folder}/{name}.png"
+    i = 1
+    while os.path.exists(path):
+        path = f"{cache_folder}/{name}({i}).png"
+        i += 1
+    return path
 
 
 class Pic:
@@ -53,8 +71,8 @@ class Pic:
                 return False
             imgData = imgData.reshape(h, int(length/h/c), c)
             # imgData = imgData.astype('uint8')
-            Image.fromarray(imgData).save('result.png')
-            self.path = 'result.png'
+            self.path = generate_name()
+            Image.fromarray(imgData).save(self.path)
         self.img = Image.open(self.path)
 
         if self.img.width > self.img.height:
@@ -89,7 +107,7 @@ class Pic:
     
     def grey(self):
         self.img = self.img.convert('L')
-        self.path = 'result.png'
+        self.path = generate_name()
         self.img.save(self.path)
         self.pix = QPixmap(self.path).scaled(self.w, self.h)
         self.label.setPixmap(self.pix)
@@ -102,11 +120,11 @@ class Pic:
         except:
             return np.array(self.img)
 
-    def save(self, path):
+    def save(self, path=None):
+        if path is None:
+            path = generate_name()
+            self.path = path
         if path.endswith('raw') or path.endswith('data'):
-            # self.img.save('result.png')
-            # t = cv2.imread('result.png', cv2.IMREAD_UNCHANGED)
-            # t.tofile(path)
             self.imgData.tofile(path)
         else:
             if self.imgData.dtype == np.complex128:
@@ -138,6 +156,7 @@ class MainWindow(QMainWindow):
                 # def wrap():
                 #     threading.Thread(target=getattr(self, t), args=(self)).start()
                 self.ui.__dict__[t].triggered.connect(getattr(self, t))
+        self.ui.toIn.clicked.connect(self.out2in)
 
 
     def open(self):
@@ -225,6 +244,14 @@ class MainWindow(QMainWindow):
         self.output.remove(self.get_current_picR())
         t = self.ui.tabWidgetR.currentIndex()
         self.ui.tabWidgetR.removeTab(t)
+
+
+    def out2in(self):
+        print("to_in")
+        path = generate_name()
+        self.get_current_picR().save(path)
+        self.closeR()
+        self.show_input(path)
         
 
     def resize(self):
@@ -258,14 +285,24 @@ class MainWindow(QMainWindow):
         result = result / len(self.opened)
         result = result.astype('uint8')
         resultImage = Image.fromarray(result)
-        resultImage.save('result.png')
-        self.show_output()
+        path = generate_name()
+        resultImage.save(path)
+        self.show_output(path)
+
+
+    def show_input(self, path):
+        pic = Pic(path, self)
+        ix = len(self.opened) + 1
+        self.opened.append(pic)
+        self.ui.tabWidget.addTab(pic.create_widget(), str(ix))
+        self.ui.tabWidget.setCurrentIndex(ix)
     
-    def show_output(self):
-        output = Pic('result.png', self)
+
+    def show_output(self, path):
+        pic = Pic(path, self)
         ix = len(self.output) + 1
-        self.output.append(output)
-        self.ui.tabWidgetR.addTab(output.create_widget(), str(ix))
+        self.output.append(pic)
+        self.ui.tabWidgetR.addTab(pic.create_widget(), str(ix))
         self.ui.tabWidgetR.setCurrentIndex(ix)
 
 
@@ -279,35 +316,40 @@ class MainWindow(QMainWindow):
         num, ok = QInputDialog.getInt(self, 'Rotate', '将当前图片逆时针旋转 X°')
         if ok and num:
             t = self.get_current_pic().img
-            t.rotate(num).save('result.png')
-            self.show_output()
+            path = generate_name()
+            t.rotate(num).save(path)
+            self.show_output(path)
 
 
     def scale(self):
         num, ok = QInputDialog.getDouble(self, 'Scale', '将当前图片放大/缩小到 X 倍')
         if ok and num:
             t = self.get_current_pic().img
-            t.resize((int(t.width * num), int(t.height * num))).save('result.png')
-            self.show_output()
+            path = generate_name()
+            t.resize((int(t.width * num), int(t.height * num))).save(path)
+            self.show_output(path)
 
 
     def enlarge(self):
         t = self.get_current_pic().img
-        t.resize((int(t.width * 2), int(t.height * 2))).save('result.png')
-        self.show_output()
+        path = generate_name()
+        t.resize((int(t.width * 2), int(t.height * 2))).save(path)
+        self.show_output(path)
 
 
     def shrink(self):
         t = self.get_current_pic().img
-        t.resize((int(t.width / 2), int(t.height / 2))).save('result.png')
-        self.show_output()
+        path = generate_name()
+        t.resize((int(t.width / 2), int(t.height / 2))).save(path)
+        self.show_output(path)
 
 
     def show_array(self, result):
         result = result.astype('uint8')
         resultImage = Image.fromarray(result)
-        resultImage.save('result.png')
-        self.show_output()
+        path = generate_name()
+        resultImage.save(path)
+        self.show_output(path)
 
 
     def histogram(self):
@@ -315,10 +357,32 @@ class MainWindow(QMainWindow):
         self.show_array(result)
 
 
+    def tailor(self):
+        t = self.get_current_pic()
+        ex = Tailor(t.path)
+        self.show_array(ex.tailor)
+
+
+    def colorSeperate(self):
+        t = self.get_current_pic()
+        s = Seperator(t.path)
+        for i in range(len(s.color_img)):
+            arr = np.array(s.color_img[i])
+            self.show_array(arr)
+
+
+    def singleLine(self):
+        pass
+
+
+    def allLine(self):
+        pass
+
+
     def FFT(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
 
         f = fft2(img)
         fshift = fftshift(f)
@@ -334,55 +398,86 @@ class MainWindow(QMainWindow):
         self.show_array(iimg)
 
 
-    def high(self):
-        t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
-
+    def smoothing(self, img, num, high=True):
         f = fft2(img)
         fshift = fftshift(f)
 
         rows, cols = img.shape
         crow, ccol = int(rows/2) , int(cols/2)     # 中心位置
-        mask = np.ones((rows, cols), np.uint8)
+        
+        if high:
+            mask = np.ones((rows, cols), np.uint8)
+            mask[crow-num:crow+num, ccol-num:ccol+num] = 0
+        else:
+            mask = np.zeros((rows, cols), np.uint8)
+            mask[crow-num:crow+num, ccol-num:ccol+num] = 1
+        fshift = fshift*mask
+
+        ishift = ifftshift(fshift)
+        iimg = ifft2(ishift)
+        return np.abs(iimg)
+
+
+    def high(self):
+        t = self.get_current_pic()
+        t.save()
+        img = cv2.imread(t.path, 0)
+
         num, _ = QInputDialog.getInt(self, 'high', '滤波中心半径（默认50）')
         if not num:
             num = 50
-        mask[crow-num:crow+num, ccol-num:ccol+num] = 0
-        fshift = fshift*mask
-
-        ishift = ifftshift(fshift)
-        iimg = ifft2(ishift)
-        iimg = np.abs(iimg)
+        iimg = self.smoothing(img, num)
         self.show_array(iimg)
+
 
     def low(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
 
-        f = fft2(img)
-        fshift = fftshift(f)
-
-        rows, cols = img.shape
-        crow, ccol = int(rows/2) , int(cols/2)     # 中心位置
-        mask = np.zeros((rows, cols), np.uint8)
         num, _ = QInputDialog.getInt(self, 'low', '滤波中心半径（默认50）')
         if not num:
             num = 50
-        mask[crow-num:crow+num, ccol-num:ccol+num] = 1
-        fshift = fshift*mask
-
-        ishift = ifftshift(fshift)
-        iimg = ifft2(ishift)
-        iimg = np.abs(iimg)
+        iimg = self.smoothing(img, num, False)
         self.show_array(iimg)
+
+
+    def colorHigh(self):
+        t = self.get_current_pic()
+        num, _ = QInputDialog.getInt(self, 'high', '滤波中心半径（默认50）')
+        if not num:
+            num = 50
+
+        img0 = []
+        print(t.imgData.shape)
+        for i in range(3):
+            t0 = np.array(t.imgData[:,:,i], dtype=np.uint8)
+            img0.append(self.smoothing(t0, num))
+        img0 = np.dstack((img0[0], img0[1], img0[2]))
+        print(img0.shape)
+        self.show_array(img0)
+        
+
+    def colorLow(self):
+        t = self.get_current_pic()
+        num, _ = QInputDialog.getInt(self, 'low', '滤波中心半径（默认50）')
+        if not num:
+            num = 50
+
+        img0 = []
+        print(t.imgData.shape)
+        for i in range(3):
+            t0 = np.array(t.imgData[:,:,i], dtype=np.uint8)
+            img0.append(self.smoothing(t0, num, False))
+        img0 = np.dstack((img0[0], img0[1], img0[2]))
+        print(img0.shape)
+        self.show_array(img0)
 
 
     def reconstruct(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
 
         # img = cv2.GaussianBlur(img, (15, 15), 0)
         # _, img = cv2.threshold(img, 30, 255, 0)
@@ -449,54 +544,54 @@ class MainWindow(QMainWindow):
 
     def Roberts(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
         out = Roberts(img)
         self.show_array(out)
 
 
     def Sobel(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
         out = Sobel(img)
         self.show_array(out)
 
 
     def Prewitt(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
         out = Prewitt(img)
         self.show_array(out)
 
 
     def Scharr(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
         out = Scharr(img)
         self.show_array(out)
 
 
     def Laplacian(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
         out = Laplacian(img)
         self.show_array(out)
 
     def Log(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
         out = Log(img)
         self.show_array(out)
 
     def Canny(self):
         t = self.get_current_pic()
-        t.save('result.png')
-        img = cv2.imread('result.png', 0)
+        t.save()
+        img = cv2.imread(t.path, 0)
         out = Canny(img)
         self.show_array(out)
 

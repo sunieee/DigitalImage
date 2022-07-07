@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1244</width>
+    <width>1344</width>
     <height>761</height>
    </rect>
   </property>
@@ -165,7 +165,7 @@
          <number>0</number>
         </property>
         <property name="tabsClosable">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="movable">
          <bool>true</bool>
@@ -225,17 +225,23 @@
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_6">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
+       <widget class="QPushButton" name="toIn">
+        <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>20</height>
+          <width>20</width>
+          <height>0</height>
          </size>
         </property>
-       </spacer>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>&lt;</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QTabWidget" name="tabWidgetR">
@@ -258,7 +264,7 @@
          </font>
         </property>
         <property name="tabsClosable">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="movable">
          <bool>true</bool>
@@ -328,12 +334,17 @@
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1244</width>
+     <width>1344</width>
      <height>22</height>
     </rect>
    </property>
@@ -355,7 +366,7 @@
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
-     <string>输出</string>
+     <string>基本操作</string>
     </property>
     <addaction name="add"/>
     <addaction name="reverse"/>
@@ -376,6 +387,9 @@
     <addaction name="separator"/>
     <addaction name="high"/>
     <addaction name="low"/>
+    <addaction name="separator"/>
+    <addaction name="colorHigh"/>
+    <addaction name="colorLow"/>
     <addaction name="separator"/>
     <addaction name="reconstruct"/>
    </widget>
@@ -399,16 +413,21 @@
     <addaction name="resize"/>
     <addaction name="resizeAll"/>
    </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>提取</string>
+    </property>
+    <addaction name="tailor"/>
+    <addaction name="colorSeperate"/>
+    <addaction name="singleLine"/>
+    <addaction name="allLine"/>
+   </widget>
    <addaction name="menu"/>
    <addaction name="menu_4"/>
    <addaction name="menu_2"/>
    <addaction name="menuFFT"/>
    <addaction name="menu_3"/>
-  </widget>
-  <widget class="QStatusBar" name="statusbar">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
+   <addaction name="menu_5"/>
   </widget>
   <action name="open">
    <property name="text">
@@ -462,7 +481,7 @@
     <string>直方图均衡化</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+L</string>
+    <string>Ctrl+Shift+G</string>
    </property>
   </action>
   <action name="FFT">
@@ -483,7 +502,7 @@
     <string>高通滤波</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+H</string>
+    <string>Ctrl+H</string>
    </property>
   </action>
   <action name="enlarge">
@@ -517,7 +536,7 @@
     <string>傅里叶描述子M项数重构（输出描述子/重构轮廓）</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+M</string>
+    <string>Ctrl+Shift+M</string>
    </property>
   </action>
   <action name="Roberts">
@@ -605,7 +624,7 @@
     <string>低通滤波</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+L</string>
+    <string>Ctrl+L</string>
    </property>
   </action>
   <action name="Scharr">
@@ -621,6 +640,67 @@
   <action name="Canny">
    <property name="text">
     <string>Canny</string>
+   </property>
+  </action>
+  <action name="tailor">
+   <property name="text">
+    <string>裁剪坐标轴</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="out2in">
+   <property name="text">
+    <string>将当前输出移到输入</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="colorSeperate">
+   <property name="text">
+    <string>颜色通道分离</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="singleLine">
+   <property name="text">
+    <string>提取单一曲线数据点</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="allLine">
+   <property name="text">
+    <string>提取曲线数据点全流程</string>
+   </property>
+  </action>
+  <action name="colorFFT">
+   <property name="text">
+    <string>彩色傅里叶变换</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F</string>
+   </property>
+  </action>
+  <action name="colorHigh">
+   <property name="text">
+    <string>彩色高通滤波</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+H</string>
+   </property>
+  </action>
+  <action name="colorLow">
+   <property name="text">
+    <string>彩色低通滤波</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+L</string>
    </property>
   </action>
  </widget>
