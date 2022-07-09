@@ -1,5 +1,23 @@
 import numpy as np
 import cv2
+import os
+import time
+
+cache_folder = os.path.join(os.path.expanduser("~"), 'AppData/Roaming/DigitalImage')
+os.makedirs(cache_folder, exist_ok=True)
+
+def generate_name(suffix='.png'):
+    if suffix and suffix[0]!= '.':
+        suffix = '.' + suffix
+    name = time.strftime("%Y%m%d%H%M%S", time.localtime())
+    path = f"{cache_folder}/{name}{suffix}"
+    i = 1
+    while os.path.exists(path):
+        path = f"{cache_folder}/{name}_{i}{suffix}"
+        i += 1
+    print(f'target file saved at {path}')
+    return path
+
 
 def expand(arr, width, height):
     # (1680, 1080, 3) 1118 1680     np.array.shape = (h, w, c)

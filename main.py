@@ -1,141 +1,20 @@
-from re import L
-from PyQt5.QtWidgets import QApplication,QMainWindow, QFileDialog, QLabel, QWidget
-from PyQt5.QtGui import QFont, QPixmap
+from PyQt5.QtWidgets import QApplication,QMainWindow, QFileDialog, QPushButton
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QInputDialog
 from cv2 import drawContours
-from Ui_main import Ui_MainWindow, QtCore
-import os
-from PIL import Image, ImageQt
-import threading
+from Ui_main import Ui_MainWindow
+from PIL import Image
 import numpy as np
 from util import *
 from LineExtraction.tailor import Tailor
 from LineExtraction.seperate import Seperator
 import cv2
-import time
+from pic import Pic, base_folder
+from helper import *
 
-
-font1 = QFont()
-font1.setFamily(u"Times New Roman")
-font1.setPointSize(12)
-base_folder = os.path.join(os.path.expanduser("~"), 'Desktop')
-if os.path.exists(base_folder + '/file'):
-    base_folder += '/file'
-if os.path.exists(base_folder + '/photo/src/LineExtraction/data'):
-    base_folder += '/photo/src/LineExtraction/data'
-
-
-cache_folder = os.path.join(os.path.expanduser("~"), 'AppData/Roaming/DigitalImage')
-os.makedirs(cache_folder, exist_ok=True)
-
-def generate_name():
-    name = time.strftime("%Y%m%d%H%M%S", time.localtime())
-    path = f"{cache_folder}/{name}.png"
-    i = 1
-    while os.path.exists(path):
-        path = f"{cache_folder}/{name}({i}).png"
-        i += 1
-    return path
-
-
-class Pic:
-    def __init__(self, path, ui) -> None:
-        print(f'opening {path}')
-        assert os.path.exists(path)
-        self.path = path
-        self.ui = ui
-        self.name = path.split('/')[-1]
-        self.open()
-            # self.pix = ImageQt.toqpixmap(self.img)
-        if not self.img:
-            self.ui.warning(f'打开文件{path}失败')
-        self.pix = QPixmap(self.path).scaled(self.w, self.h)
-        print(self.pix)
-        assert not self.pix.isNull()
-
-
-    def open(self):
-        if self.path.endswith('raw') or self.path.endswith('data'):
-            imgData = np.fromfile(self.path, dtype=np.uint8)
-            length = imgData.shape[0]
-            h, ok = QInputDialog.getInt(self.ui, '图片尺寸', '请输入图片height')
-            if not h or not ok:
-                h = 512
-            if length % h != 0:
-                return False
-
-            c, ok = QInputDialog.getInt(self.ui, '图片尺寸', '请输入图片channel数')
-            if not h or not ok:
-                h = 3
-            if (length / h) % c != 0:
-                return False
-            imgData = imgData.reshape(h, int(length/h/c), c)
-            # imgData = imgData.astype('uint8')
-            self.path = generate_name()
-            Image.fromarray(imgData).save(self.path)
-        self.img = Image.open(self.path)
-
-        if self.img.width > self.img.height:
-            self.w = 600
-            self.h = int(self.img.height / self.img.width * 600)
-        else:
-            self.w = int(self.img.width / self.img.height * 600)
-            self.h = 600
-    
-    def create_widget(self):
-        self.widget = QWidget()
-        self.label = QLabel(self.widget)
-        self.label.setObjectName(self.name)
-        # self.label.setGeometry(QRect(0, 0, self.w, self.h))
-        # self.label.setFixedSize(self.w, self.h)
-        self.label.setPixmap(self.pix)
-        # self.label.setScaledContents(True)
-
-        self.text = QLabel(self.widget)
-        self.text.setGeometry(QtCore.QRect(500, 0, 100, 30))
-        self.text.setFont(font1)
-        self.text.setText(f'{self.img.width} × {self.img.height}')
-        
-        # self.widget.
-        return self.widget
-
-    def resize(self):
-        self.img = self.img.resize((self.w, self.h))
-        print(f'{self.img.width} × {self.img.height}')
-        self.text.setText(f'{self.img.width} × {self.img.height}')
-
-    
-    def grey(self):
-        self.img = self.img.convert('L')
-        self.path = generate_name()
-        self.img.save(self.path)
-        self.pix = QPixmap(self.path).scaled(self.w, self.h)
-        self.label.setPixmap(self.pix)
-
-
-    @property
-    def imgData(self):
-        try:
-            return np.array(self.img, dtype='float')
-        except:
-            return np.array(self.img)
-
-    def save(self, path=None):
-        if path is None:
-            path = generate_name()
-            self.path = path
-        if path.endswith('raw') or path.endswith('data'):
-            self.imgData.tofile(path)
-        else:
-            if self.imgData.dtype == np.complex128:
-                self.ui.warning('You are saving a complex data. File types must be raw/data')
-            self.img.save(path)
-        
 
 # 注意 这里选择的父类 要和你UI文件窗体一样的类型
 # 主窗口是 QMainWindow， 表单是 QWidget， 对话框是 QDialog
 class MainWindow(QMainWindow):
-
     def __init__(self):
         super().__init__()
         # 使用ui文件导入定义界面类
@@ -151,12 +30,18 @@ class MainWindow(QMainWindow):
 
     def bind(self):
         # self.ui.open.activate.connect(self.open)
+        # def wrap():
+        #     threading.Thread(target=getattr(self, t), args=(self)).start()
         for t in self.ui.__dict__.keys():
             if t in dir(self):
-                # def wrap():
-                #     threading.Thread(target=getattr(self, t), args=(self)).start()
-                self.ui.__dict__[t].triggered.connect(getattr(self, t))
-        self.ui.toIn.clicked.connect(self.out2in)
+                if type(self.ui.__dict__[t]) == QPushButton:
+                    self.ui.__dict__[t].click.connect(getattr(self, t))
+                else: 
+                    self.ui.__dict__[t].triggered.connect(getattr(self, t))
+    
+        self.ui.close1.click.connect(self.close)
+        self.ui.close2.click.connect(self.closeR)
+        
 
 
     def open(self):
@@ -164,7 +49,7 @@ class MainWindow(QMainWindow):
             self,             # 父窗口对象
             "选择你要上传的图片", # 标题
             base_folder,        # 起始目录
-            "图片类型 (*.png *.jpg *.bmp *.raw *.data);;jpg类型 (*.jpg);;png类型 (*.png);;bmp类型 (*.bmp);;raw类型 (*.raw *.data)" # 选择类型过滤项，过滤内容在括号中
+            "图片类型 (*.png *.jpg *.bmp *.raw *.data);;jpg类型 (*.jpg);;png类型 (*.png);;bmp类型 (*.bmp);;raw类型 (*.raw *.data);;pdf类型 (*.pdf)" # 选择类型过滤项，过滤内容在括号中
         )
         for p in filePaths:
             self.openTarget(p)
@@ -198,7 +83,6 @@ class MainWindow(QMainWindow):
         if filePath:
             print(filePath)
             t.save(filePath)
-
 
     def save(self):
         t = self.get_current_pic()
@@ -246,27 +130,27 @@ class MainWindow(QMainWindow):
         self.ui.tabWidgetR.removeTab(t)
 
 
-    def out2in(self):
-        print("to_in")
-        path = generate_name()
-        self.get_current_picR().save(path)
+    def toIn(self):
+        path = self.get_current_picR().save()
         self.closeR()
         self.show_input(path)
-        
 
     def resize(self):
-        self.get_current_pic().resize()
+        path = self.get_current_pic().base('resize')
+        self.show_output(path)
 
     def grey(self):
-        self.get_current_pic().grey()
+        path = self.get_current_pic().base('grey')
+        self.show_output(path)
 
     def resizeAll(self):
         for pic in self.opened:
-            pic.resize()
-    
+            path = pic.base('grey')
+            self.show_output(path)
 
     def add(self):
         if len(self.opened) == 0:
+            self.warning('No pictures opened. Abort!')
             return
 
         w = 0
@@ -594,6 +478,31 @@ class MainWindow(QMainWindow):
         img = cv2.imread(t.path, 0)
         out = Canny(img)
         self.show_array(out)
+
+
+    def toPDF(self):
+        pass
+
+    def toPIC(self):
+        pass
+
+    def toGIF(self):
+        pass
+
+    def removeAll(self):
+        pass
+
+    def composeAll(self):
+        pass
+
+    def reverseAll(self):
+        pass
+
+    def left1(self):
+        pass
+
+    def left2(self):
+        pass
 
 
 app = QApplication([])

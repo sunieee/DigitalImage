@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1344</width>
-    <height>761</height>
+    <width>1494</width>
+    <height>844</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,7 +48,7 @@
         <property name="font">
          <font>
           <family>黑体</family>
-          <pointsize>16</pointsize>
+          <pointsize>18</pointsize>
          </font>
         </property>
         <property name="text">
@@ -87,7 +87,7 @@
         <property name="font">
          <font>
           <family>黑体</family>
-          <pointsize>16</pointsize>
+          <pointsize>18</pointsize>
          </font>
         </property>
         <property name="text">
@@ -148,8 +148,8 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>600</width>
-          <height>630</height>
+          <width>700</width>
+          <height>725</height>
          </size>
         </property>
         <property name="font">
@@ -186,10 +186,10 @@
          <widget class="QLabel" name="label_4">
           <property name="geometry">
            <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>711</width>
-            <height>621</height>
+            <x>-10</x>
+            <y>-10</y>
+            <width>721</width>
+            <height>741</height>
            </rect>
           </property>
           <property name="text">
@@ -206,19 +206,97 @@
           <property name="geometry">
            <rect>
             <x>240</x>
-            <y>270</y>
-            <width>141</width>
-            <height>71</height>
+            <y>310</y>
+            <width>241</width>
+            <height>61</height>
            </rect>
           </property>
           <property name="font">
            <font>
             <family>黑体</family>
-            <pointsize>14</pointsize>
+            <pointsize>18</pointsize>
            </font>
           </property>
           <property name="text">
-           <string>请打开一张图片</string>
+           <string>请打开一张图片/PDF</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="left1">
+          <property name="geometry">
+           <rect>
+            <x>260</x>
+            <y>680</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="right1">
+          <property name="geometry">
+           <rect>
+            <x>360</x>
+            <y>680</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&gt;</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="close1">
+          <property name="geometry">
+           <rect>
+            <x>660</x>
+            <y>0</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>×</string>
           </property>
          </widget>
         </widget>
@@ -228,8 +306,8 @@
        <widget class="QPushButton" name="toIn">
         <property name="minimumSize">
          <size>
-          <width>20</width>
-          <height>0</height>
+          <width>50</width>
+          <height>50</height>
          </size>
         </property>
         <property name="font">
@@ -253,8 +331,8 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>600</width>
-          <height>630</height>
+          <width>700</width>
+          <height>725</height>
          </size>
         </property>
         <property name="font">
@@ -285,10 +363,10 @@
          <widget class="QLabel" name="label_5">
           <property name="geometry">
            <rect>
-            <x>0</x>
+            <x>-20</x>
             <y>-10</y>
-            <width>671</width>
-            <height>641</height>
+            <width>731</width>
+            <height>741</height>
            </rect>
           </property>
           <property name="text">
@@ -299,6 +377,81 @@
           </property>
           <property name="scaledContents">
            <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="left2">
+          <property name="geometry">
+           <rect>
+            <x>270</x>
+            <y>680</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="right2">
+          <property name="geometry">
+           <rect>
+            <x>380</x>
+            <y>680</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&gt;</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="close2">
+          <property name="geometry">
+           <rect>
+            <x>660</x>
+            <y>0</y>
+            <width>30</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>×</string>
           </property>
          </widget>
         </widget>
@@ -344,17 +497,29 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1344</width>
-     <height>22</height>
+     <width>1494</width>
+     <height>27</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>黑体</family>
-     <pointsize>12</pointsize>
+     <family>华文细黑</family>
+     <pointsize>14</pointsize>
     </font>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::TabFocus</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
    <widget class="QMenu" name="menu">
+    <property name="font">
+     <font>
+      <family>华文细黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>文件</string>
     </property>
@@ -365,12 +530,22 @@
     <addaction name="closeR"/>
    </widget>
    <widget class="QMenu" name="menu_2">
+    <property name="font">
+     <font>
+      <family>华文细黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>基本操作</string>
     </property>
     <addaction name="add"/>
     <addaction name="reverse"/>
     <addaction name="move"/>
+    <addaction name="separator"/>
+    <addaction name="grey"/>
+    <addaction name="resize"/>
+    <addaction name="resizeAll"/>
     <addaction name="separator"/>
     <addaction name="rotate"/>
     <addaction name="enlarge"/>
@@ -380,6 +555,12 @@
     <addaction name="histogram"/>
    </widget>
    <widget class="QMenu" name="menuFFT">
+    <property name="font">
+     <font>
+      <family>华文细黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>FFT</string>
     </property>
@@ -394,6 +575,12 @@
     <addaction name="reconstruct"/>
    </widget>
    <widget class="QMenu" name="menu_3">
+    <property name="font">
+     <font>
+      <family>华文细黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>边缘检测</string>
     </property>
@@ -405,15 +592,13 @@
     <addaction name="Log"/>
     <addaction name="Canny"/>
    </widget>
-   <widget class="QMenu" name="menu_4">
-    <property name="title">
-     <string>输入</string>
-    </property>
-    <addaction name="grey"/>
-    <addaction name="resize"/>
-    <addaction name="resizeAll"/>
-   </widget>
    <widget class="QMenu" name="menu_5">
+    <property name="font">
+     <font>
+      <family>华文细黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>提取</string>
     </property>
@@ -422,16 +607,39 @@
     <addaction name="singleLine"/>
     <addaction name="allLine"/>
    </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="font">
+     <font>
+      <family>华文细黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>PDF工具</string>
+    </property>
+    <addaction name="toPDF"/>
+    <addaction name="toPIC"/>
+    <addaction name="removeAll"/>
+    <addaction name="reverseAll"/>
+    <addaction name="composeAll"/>
+    <addaction name="toGIF"/>
+   </widget>
    <addaction name="menu"/>
-   <addaction name="menu_4"/>
    <addaction name="menu_2"/>
    <addaction name="menuFFT"/>
    <addaction name="menu_3"/>
    <addaction name="menu_5"/>
+   <addaction name="menu_6"/>
   </widget>
   <action name="open">
    <property name="text">
     <string>打开</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -463,7 +671,7 @@
   </action>
   <action name="add">
    <property name="text">
-    <string>加（所有打开的图像）</string>
+    <string>加（所有输入图像）</string>
    </property>
   </action>
   <action name="reverse">
@@ -561,7 +769,7 @@
   </action>
   <action name="resize">
    <property name="text">
-    <string>等比缩放到适应窗口</string>
+    <string>等比缩放到适应</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -569,7 +777,7 @@
   </action>
   <action name="resizeAll">
    <property name="text">
-    <string>全部等比缩放到适应</string>
+    <string>全部输入等比缩放到适应</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+R</string>
@@ -701,6 +909,36 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+L</string>
+   </property>
+  </action>
+  <action name="toPDF">
+   <property name="text">
+    <string>图片转PDF</string>
+   </property>
+  </action>
+  <action name="toPIC">
+   <property name="text">
+    <string>PDF转图片</string>
+   </property>
+  </action>
+  <action name="removeAll">
+   <property name="text">
+    <string>去除水印</string>
+   </property>
+  </action>
+  <action name="reverseAll">
+   <property name="text">
+    <string>反色</string>
+   </property>
+  </action>
+  <action name="composeAll">
+   <property name="text">
+    <string>合成大图</string>
+   </property>
+  </action>
+  <action name="toGIF">
+   <property name="text">
+    <string>转GIF</string>
    </property>
   </action>
  </widget>

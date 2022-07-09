@@ -52,8 +52,7 @@ class Color:
 
     def in_lis(self, lis):
         # 白色
-        if self.gray > 235:
-            # print('white')
+        if self.foreground():
             return Color((255,255,255))
 
         # 相似度评分
@@ -61,10 +60,10 @@ class Color:
         color = None
 
         for c in lis:
-            if c == Color([255,255,255]):
+            if c == Color((255,255,255)):
                 continue
             dis = self.distance(c)
-            if dis <= 150:
+            if dis <= 120:
                 hue = self.hue_distance(c)
                 if hue <= 0.02:
                     return c
@@ -73,18 +72,6 @@ class Color:
                     if m < mark:
                         mark = m
                         color = c
-            # if dis < 10:
-            #     return c
-            # if hue < 0.1 and dis < 30:
-            #     return c
-            # if hue < 0.05 and dis < 50:
-            #     return c
-            # if hue * hue * dis < 0.05 and dis < 50:
-            #     return c
-            # if hue ** 1.5 * dis < 0.5 and dis < 50 and hue < 0.1:
-            #     return c
-            # if hue * 1000 + dis < 50:
-            #     return c
         if mark < 0.4:
             return color
 
@@ -101,6 +88,9 @@ class Color:
     def valid(self):
         return self.gray > 50
 
+
+    def foreground(self):
+        return self.gray > 230
 
 
 def hue_split(img_path):
@@ -173,7 +163,7 @@ class Seperator:
 
 if __name__ == "__main__":
     # Extractor('data/37- Ce-BDC-1.jpg')
-    t = Seperator('out/13.jpg')
+    t = Seperator('out/0.png')
     # print(t.child)
 
     # print(Color((163,159,160)).distance(Color((129,118,116))))
