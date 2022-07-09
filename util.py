@@ -16,6 +16,8 @@ def generate_name(suffix='.png'):
         path = f"{cache_folder}/{name}_{i}{suffix}"
         i += 1
     print(f'target file saved at {path}')
+    if suffix == '':
+        os.makedirs(path)
     return path
 
 
@@ -182,3 +184,23 @@ def Canny(img):
     blurred = cv2.GaussianBlur(img, (3, 3), 0)
     edge_output = cv2.Canny(blurred, 50, 150)
     return cv2.bitwise_and(img, img, mask=edge_output)
+
+
+def smoothing(img, num, high=True):
+    f = fft2(img)
+    fshift = fftshift(f)
+
+    rows, cols = img.shape
+    crow, ccol = int(rows/2) , int(cols/2)     # 中心位置
+    
+    if high:
+        mask = np.ones((rows, cols), np.uint8)
+        mask[crow-num:crow+num, ccol-num:ccol+num] = 0
+    else:
+        mask = np.zeros((rows, cols), np.uint8)
+        mask[crow-num:crow+num, ccol-num:ccol+num] = 1
+    fshift = fshift*mask
+
+    ishift = ifftshift(fshift)
+    iimg = ifft2(ishift)
+    return np.abs(iimg)

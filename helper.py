@@ -51,7 +51,7 @@ def pic2pdf(folder, deep=False, path=None):
     pngFiles = get_folder(folder, deep)
     output = Image.open( pngFiles[0] )
     pngFiles.pop(0)
-    for file in pngFiles:
+    for file in tqdm(pngFiles):
         pngFile = Image.open( file )
         if pngFile.mode == "RGB":
             pngFile = pngFile.convert( "RGB" )
@@ -71,16 +71,15 @@ def pic2gif(folder, deep=False, fps=1, path=None):
     return path
 
 
-def pdf2pic(pdf):
+def pdf2pic(pdf, dpi=144):
     folder = generate_name('')
-    os.makedirs(folder)
-    for i, page in enumerate(convert_from_path(pdf)):
+    for i, page in tqdm(enumerate(convert_from_path(pdf, dpi=dpi))):
         page.save(os.path.join(folder, f'{i}.jpg'), 'JPEG')
     return folder
 
 
-def remove_gray(path, thresh=150):
-    img = Image.open(path)
+def remove_gray(pic, thresh=150, path=None):
+    img = Image.open(pic)
     img = img.convert('RGB')   # 修改颜色通道为RGB
     x, y = img.size   # 获得长和宽
 
@@ -91,7 +90,10 @@ def remove_gray(path, thresh=150):
                 img.putpixel((i, k), (255,255,255))
 
     # img.show()
-    return img
+    if path is None:
+        path = generate_name()
+    img.save(path)
+    return path
 
 def get_size(pic):
     """输入路径，返回宽，长"""

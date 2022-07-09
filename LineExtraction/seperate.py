@@ -107,7 +107,7 @@ class Seperator:
         img = Image.open(path)
         img = img.convert('RGB')   # 修改颜色通道为RGB
         x, y = img.size   # 获得长和宽
-
+        
         # a0m = np.mean(np.mean(img, axis=0), axis=1)
         # print("平均深度", np.mean(a0m))
 

@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QApplication,QMainWindow, QFileDialog, QPushButton
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QInputDialog
 from cv2 import drawContours
+from LineExtraction.extractor import Extractor
 from Ui_main import Ui_MainWindow
 from PIL import Image
 import numpy as np
@@ -28,20 +29,32 @@ class MainWindow(QMainWindow):
         self.output = []
         self.bind()
 
+    
+    def wrap(self, x):
+        # print(x)
+        self.__dict__[x] = lambda _: self.show_output(
+            self.get_current_pic().base(x)
+        )
+
     def bind(self):
+        for func in ['grey','resize','enlarge','shrink',
+            'Roberts','Sobel','Prewitt','Scharr','Laplacian','Log','Canny',
+            'reverse','histogram']:
+            self.wrap(func)
+
         # self.ui.open.activate.connect(self.open)
         # def wrap():
         #     threading.Thread(target=getattr(self, t), args=(self)).start()
         for t in self.ui.__dict__.keys():
             if t in dir(self):
+                # print(self.ui.__dict__[t], type(self.ui.__dict__[t]))
                 if type(self.ui.__dict__[t]) == QPushButton:
-                    self.ui.__dict__[t].click.connect(getattr(self, t))
+                    self.ui.__dict__[t].clicked.connect(getattr(self, t))
                 else: 
                     self.ui.__dict__[t].triggered.connect(getattr(self, t))
     
-        self.ui.close1.click.connect(self.close)
-        self.ui.close2.click.connect(self.closeR)
-        
+        self.ui.close1.clicked.connect(self.close)
+        self.ui.close2.clicked.connect(self.closeR)
 
 
     def open(self):
@@ -49,7 +62,7 @@ class MainWindow(QMainWindow):
             self,             # 父窗口对象
             "选择你要上传的图片", # 标题
             base_folder,        # 起始目录
-            "图片类型 (*.png *.jpg *.bmp *.raw *.data);;jpg类型 (*.jpg);;png类型 (*.png);;bmp类型 (*.bmp);;raw类型 (*.raw *.data);;pdf类型 (*.pdf)" # 选择类型过滤项，过滤内容在括号中
+            "支持类型 (*.png *.jpg *.bmp *.raw *.data *.pdf);;图片类型 (*.png *.jpg *.bmp *.raw *.data);;jpg类型 (*.jpg);;png类型 (*.png);;bmp类型 (*.bmp);;raw类型 (*.raw *.data);;pdf类型 (*.pdf)" # 选择类型过滤项，过滤内容在括号中
         )
         for p in filePaths:
             self.openTarget(p)
@@ -62,7 +75,6 @@ class MainWindow(QMainWindow):
 
         self.ui.tabWidget.addTab(pic.create_widget(), str(ix))
         self.ui.tabWidget.setCurrentIndex(ix)
-        print('finish')
         # Pyside2用不了！！！
 
     def warning(self, text):
@@ -99,18 +111,26 @@ class MainWindow(QMainWindow):
             return
         self.save_pic(t)
 
+    def current_pic(self):
+        w = self.ui.tabWidget.currentWidget()
+        for pic in self.opened:
+            if pic.widget == w:
+                return pic
 
     def get_current_pic(self):
-        # print(self.opened)
         w = self.ui.tabWidget.currentWidget()
         for pic in self.opened:
             if pic.widget == w:
                 return pic
         self.warning('输入窗口尚未打开任何图片！')
 
+    def current_picR(self):
+        w = self.ui.tabWidgetR.currentWidget()
+        for pic in self.output:
+            if pic.widget == w:
+                return pic
 
     def get_current_picR(self):
-        # print(self.output)
         w = self.ui.tabWidgetR.currentWidget()
         for pic in self.output:
             if pic.widget == w:
@@ -131,17 +151,22 @@ class MainWindow(QMainWindow):
 
 
     def toIn(self):
-        path = self.get_current_picR().save()
-        self.closeR()
-        self.show_input(path)
+        ix = len(self.opened) + 1
+        t = self.get_current_picR()
+        self.output.remove(t)
+        self.opened.append(t)
+        self.ui.tabWidgetR.removeTab(self.ui.tabWidgetR.currentIndex())
+        self.ui.tabWidget.addTab(t.widget, str(ix))
+        self.ui.tabWidget.setCurrentIndex(ix)
 
-    def resize(self):
-        path = self.get_current_pic().base('resize')
-        self.show_output(path)
-
-    def grey(self):
-        path = self.get_current_pic().base('grey')
-        self.show_output(path)
+    def toOut(self):
+        ix = len(self.output) + 1
+        t = self.get_current_pic()
+        self.opened.remove(t)
+        self.output.append(t)
+        self.ui.tabWidget.removeTab(self.ui.tabWidget.currentIndex())
+        self.ui.tabWidgetR.addTab(t.widget, str(ix))
+        self.ui.tabWidgetR.setCurrentIndex(ix)
 
     def resizeAll(self):
         for pic in self.opened:
@@ -190,42 +215,18 @@ class MainWindow(QMainWindow):
         self.ui.tabWidgetR.setCurrentIndex(ix)
 
 
-    def reverse(self):
-        t = self.get_current_pic().imgData
-        result = np.ones(t.shape, dtype=np.uint8) * 255 - t
-        self.show_array(result)
-
-
     def rotate(self):
         num, ok = QInputDialog.getInt(self, 'Rotate', '将当前图片逆时针旋转 X°')
         if ok and num:
-            t = self.get_current_pic().img
-            path = generate_name()
-            t.rotate(num).save(path)
+            path = self.get_current_pic().base('rotate', num)
             self.show_output(path)
 
 
     def scale(self):
         num, ok = QInputDialog.getDouble(self, 'Scale', '将当前图片放大/缩小到 X 倍')
         if ok and num:
-            t = self.get_current_pic().img
-            path = generate_name()
-            t.resize((int(t.width * num), int(t.height * num))).save(path)
+            path = self.get_current_pic().base('scale', num)
             self.show_output(path)
-
-
-    def enlarge(self):
-        t = self.get_current_pic().img
-        path = generate_name()
-        t.resize((int(t.width * 2), int(t.height * 2))).save(path)
-        self.show_output(path)
-
-
-    def shrink(self):
-        t = self.get_current_pic().img
-        path = generate_name()
-        t.resize((int(t.width / 2), int(t.height / 2))).save(path)
-        self.show_output(path)
 
 
     def show_array(self, result):
@@ -235,12 +236,6 @@ class MainWindow(QMainWindow):
         resultImage.save(path)
         self.show_output(path)
 
-
-    def histogram(self):
-        result, _ = histeq(self.get_current_pic().imgData)
-        self.show_array(result)
-
-
     def tailor(self):
         t = self.get_current_pic()
         ex = Tailor(t.path)
@@ -249,14 +244,20 @@ class MainWindow(QMainWindow):
 
     def colorSeperate(self):
         t = self.get_current_pic()
-        s = Seperator(t.path)
+        path = t.path
+        if np.mean(t.imgData[:]) > 200:
+            path = t.base('reverse')
+        s = Seperator(path)
         for i in range(len(s.color_img)):
             arr = np.array(s.color_img[i])
             self.show_array(arr)
 
 
     def singleLine(self):
-        pass
+        t = self.get_current_pic()
+        ex = Extractor(t.path)
+        path = ex.interpolate()
+        self.show_output(path)
 
 
     def allLine(self):
@@ -282,80 +283,36 @@ class MainWindow(QMainWindow):
         self.show_array(iimg)
 
 
-    def smoothing(self, img, num, high=True):
-        f = fft2(img)
-        fshift = fftshift(f)
-
-        rows, cols = img.shape
-        crow, ccol = int(rows/2) , int(cols/2)     # 中心位置
-        
-        if high:
-            mask = np.ones((rows, cols), np.uint8)
-            mask[crow-num:crow+num, ccol-num:ccol+num] = 0
-        else:
-            mask = np.zeros((rows, cols), np.uint8)
-            mask[crow-num:crow+num, ccol-num:ccol+num] = 1
-        fshift = fshift*mask
-
-        ishift = ifftshift(fshift)
-        iimg = ifft2(ishift)
-        return np.abs(iimg)
-
-
     def high(self):
-        t = self.get_current_pic()
-        t.save()
-        img = cv2.imread(t.path, 0)
-
         num, _ = QInputDialog.getInt(self, 'high', '滤波中心半径（默认50）')
         if not num:
             num = 50
-        iimg = self.smoothing(img, num)
-        self.show_array(iimg)
+        path = self.get_current_pic().base('high', num)
+        self.show_output(path)
 
 
     def low(self):
-        t = self.get_current_pic()
-        t.save()
-        img = cv2.imread(t.path, 0)
-
         num, _ = QInputDialog.getInt(self, 'low', '滤波中心半径（默认50）')
         if not num:
             num = 50
-        iimg = self.smoothing(img, num, False)
-        self.show_array(iimg)
+        path = self.get_current_pic().base('low', num)
+        self.show_output(path)
 
 
     def colorHigh(self):
-        t = self.get_current_pic()
         num, _ = QInputDialog.getInt(self, 'high', '滤波中心半径（默认50）')
         if not num:
             num = 50
-
-        img0 = []
-        print(t.imgData.shape)
-        for i in range(3):
-            t0 = np.array(t.imgData[:,:,i], dtype=np.uint8)
-            img0.append(self.smoothing(t0, num))
-        img0 = np.dstack((img0[0], img0[1], img0[2]))
-        print(img0.shape)
-        self.show_array(img0)
+        path = self.get_current_pic().base('colorHigh', num)
+        self.show_output(path)
         
 
     def colorLow(self):
-        t = self.get_current_pic()
         num, _ = QInputDialog.getInt(self, 'low', '滤波中心半径（默认50）')
         if not num:
             num = 50
-
-        img0 = []
-        print(t.imgData.shape)
-        for i in range(3):
-            t0 = np.array(t.imgData[:,:,i], dtype=np.uint8)
-            img0.append(self.smoothing(t0, num, False))
-        img0 = np.dstack((img0[0], img0[1], img0[2]))
-        print(img0.shape)
-        self.show_array(img0)
+        path = self.get_current_pic().base('colorLow', num)
+        self.show_output(path)
 
 
     def reconstruct(self):
@@ -424,86 +381,110 @@ class MainWindow(QMainWindow):
             out = drawContours(result, contour, -1, (255,255,255), 5, lineType=cv2.LINE_AA)
             # print(out)
             self.show_array(out)
-        
-
-    def Roberts(self):
-        t = self.get_current_pic()
-        t.save()
-        img = cv2.imread(t.path, 0)
-        out = Roberts(img)
-        self.show_array(out)
-
-
-    def Sobel(self):
-        t = self.get_current_pic()
-        t.save()
-        img = cv2.imread(t.path, 0)
-        out = Sobel(img)
-        self.show_array(out)
-
-
-    def Prewitt(self):
-        t = self.get_current_pic()
-        t.save()
-        img = cv2.imread(t.path, 0)
-        out = Prewitt(img)
-        self.show_array(out)
-
-
-    def Scharr(self):
-        t = self.get_current_pic()
-        t.save()
-        img = cv2.imread(t.path, 0)
-        out = Scharr(img)
-        self.show_array(out)
-
-
-    def Laplacian(self):
-        t = self.get_current_pic()
-        t.save()
-        img = cv2.imread(t.path, 0)
-        out = Laplacian(img)
-        self.show_array(out)
-
-    def Log(self):
-        t = self.get_current_pic()
-        t.save()
-        img = cv2.imread(t.path, 0)
-        out = Log(img)
-        self.show_array(out)
-
-    def Canny(self):
-        t = self.get_current_pic()
-        t.save()
-        img = cv2.imread(t.path, 0)
-        out = Canny(img)
-        self.show_array(out)
-
 
     def toPDF(self):
-        pass
-
-    def toPIC(self):
-        pass
+        folder = [t.src for t in self.opened if t.endswith('.png') or t.endswith('.jpg')]
+        print('valid pictures are:', folder)
+        path = pic2pdf(folder)
+        self.show_output(path)
 
     def toGIF(self):
-        pass
+        t = self.get_current_pic()
+        h, ok = QInputDialog.getInt(self, '正在生成gif', '请输入gif图片的fps（默认为1）')
+        if not h or not ok:
+            h = 1
+        if t.lis:
+            print('converting pdf to gif...')
+            folder = t.lis
+        else:
+            print('converting pictures to gif...')
+            folder = [t.src for t in self.opened if t.endswith('.png') or t.endswith('.jpg')]
+        print('valid pictures are:', folder)
+        path = pic2gif(folder)
+        self.show_output(path)
 
-    def removeAll(self):
-        pass
+    def remove_gray(self):
+        t = self.get_current_pic()
+        h, ok = QInputDialog.getInt(self, '正在去除水印', '请输入灰色阈值（默认为150，高于此都会被置于白色）')
+        if not h or not ok:
+            h = 150
+        if t.lis:
+            folder = generate_name('')
+            print(f'共{len(t.lis)}张图片，请耐心等待...')
+            for f in os.listdir(t.folder):
+                remove_gray(os.path.join(t.folder, f), h, os.path.join(folder, f))
+            
+            path = pic2pdf(folder)
+            self.show_output(path)
+        else:
+            path = remove_gray(t.path)
+            self.show_output(path)
 
-    def composeAll(self):
-        pass
-
-    def reverseAll(self):
-        pass
+    def compose(self):
+        t = self.get_current_pic()
+        h, ok = QInputDialog.getInt(self, '正在合成大图', '请输入大图片每行的图片数量（默认为2）')
+        if not h or not ok:
+            h = 2
+        if t.lis:
+            print('converting pdf to gif...')
+            folder = t.lis
+        else:
+            print('converting pictures to gif...')
+            folder = [t.src for t in self.opened if t.endswith('.png') or t.endswith('.jpg')]
+        print('valid pictures are:', folder)
+        path = concat(folder, h)
+        self.show_output(path)
 
     def left1(self):
-        pass
+        t = self.current_pic()
+        if t and t.lis:
+            t.left()
+            return
+
+        t = self.ui.tabWidget.currentIndex()
+        if t == 0:
+            t = self.ui.tabWidget.count()
+        self.ui.tabWidget.setCurrentIndex(t - 1)
+
+
+    def right1(self):
+        t = self.current_pic()
+        if t and t.lis:
+            t.right()
+            return
+
+        t = self.ui.tabWidget.currentIndex()
+        if t == self.ui.tabWidget.count()-1:
+            t = -1
+        if t == 0:
+            t = 0 if self.ui.tabWidget.count()>0 else -1
+        self.ui.tabWidget.setCurrentIndex(t + 1)
+
 
     def left2(self):
-        pass
+        t = self.current_picR()
+        if t and t.lis:
+            t.left()
+            return
 
+        t = self.ui.tabWidgetR.currentIndex()
+        if t == 0:
+            t = self.ui.tabWidgetR.count()
+        self.ui.tabWidgetR.setCurrentIndex(t - 1)
+
+
+    def right2(self):
+        t = self.current_picR()
+        if t and t.lis:
+            t.right()
+            return
+
+        t = self.ui.tabWidgetR.currentIndex()
+        if t == self.ui.tabWidgetR.count()-1:
+            t = -1
+        if t == 0:
+            t = 0 if self.ui.tabWidgetR.count()>0 else -1
+        self.ui.tabWidgetR.setCurrentIndex(t + 1)
 
 app = QApplication([])
 mainw = MainWindow()

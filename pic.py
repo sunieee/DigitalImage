@@ -10,12 +10,13 @@ from helper import *
 
 font1 = QFont()
 font1.setFamily(u"Times New Roman")
-font1.setPointSize(14)
+font1.setPointSize(12)
 base_folder = os.path.join(os.path.expanduser("~"), 'Desktop')
 if os.path.exists(base_folder + '/file'):
     base_folder += '/file'
 if os.path.exists(base_folder + '/photo/src/LineExtraction/data'):
     base_folder += '/photo/src/LineExtraction/data'
+
 
 class Pic:
     MAX_WIDTH = 700
@@ -29,10 +30,12 @@ class Pic:
         self.name = path.split('/')[-1]
         self.lis = None
         self.open()
-        print(11111111111111)
-            # self.pix = ImageQt.toqpixmap(self.img)
-        if not self.img:
-            self.ui.warning(f'打开文件{path}失败')
+        self.open_pix()
+        self.dic = {0: (self.pix, self.img, self.w, self.h)}
+    
+    def open_pix(self):
+        # if not self.img:
+        #     self.ui.warning(f'打开文件{self.src}失败')
 
         if self.img.width > self.img.height:
             self.w = Pic.MAX_WIDTH
@@ -41,9 +44,9 @@ class Pic:
             self.w = int(self.img.width / self.img.height * Pic.MAX_WIDTH)
             self.h = Pic.MAX_WIDTH
 
-        # self.pix = QPixmap(self.path).scaled(self.w, self.h)
-        # print(self.pix)
-        # assert not self.pix.isNull()
+        self.pix = QPixmap(self.path).scaled(self.w, self.h)
+        print(self.pix)
+        assert not self.pix.isNull()
 
 
     def open(self):
@@ -67,8 +70,11 @@ class Pic:
             self.path = generate_name()
             Image.fromarray(imgData).save(self.path)
         elif self.src.endswith('.pdf'):
-            print('You are opening a pdf file!')
-            self.folder = pdf2pic(self.path)
+            print('You are opening a pdf file! Converting to images!')
+            h, ok = QInputDialog.getInt(self.ui, '正在打开pdf', '请输入pdf转图片dpi（默认144，即两倍大小')
+            if not h or not ok:
+                h = 144
+            self.folder = pdf2pic(self.src, dpi=h)
             self.lis = get_folder(self.folder)
             self.index = 0
             self.path = self.lis[0]
@@ -78,9 +84,10 @@ class Pic:
         
 
     def label_text(self):
+        path = ''
         if self.lis:
-            path += f'\n1/{len(self.lis)}'
-        return f'{self.img.width} × {self.img.height}\n{self.name}'
+            path += f'\n{self.index + 1}/{len(self.lis)}'
+        return f'{self.img.width} × {self.img.height}\n{self.name}{path}'
     
     def create_widget(self):
         self.widget = QWidget()
@@ -92,7 +99,7 @@ class Pic:
         # self.label.setScaledContents(True)
 
         self.text = QLabel(self.widget)
-        self.text.setGeometry(QtCore.QRect(600, 700, 200, 100))
+        self.text.setGeometry(QtCore.QRect(550, 630, 150, 70))
         self.text.setFont(font1)
         self.text.setText(self.label_text())
         # self.widget.
@@ -109,7 +116,33 @@ class Pic:
         self.pix = QPixmap(self.path).scaled(self.w, self.h)
         self.label.setPixmap(self.pix)
 
-    def base(self, func: str, *args):
+    def renew_label(self):
+        self.path = self.lis[self.index]
+        if self.index in self.dic:
+            # 直接加载缓存
+            self.pix, self.img, self.w, self.h = self.dic[self.index]
+        else:
+            self.img = Image.open(self.path)
+            self.open_pix()
+            self.dic[self.index] = (self.pix, self.img, self.w, self.h)
+
+        self.label.setPixmap(self.pix)
+        self.text.setText(self.label_text())
+        
+
+    def left(self):
+        if self.lis:
+            self.index -= 1
+            if self.index < 0:
+                self.index = len(self.lis) - 1
+            self.renew_label()
+            
+    def right(self):
+        if self.lis:
+            self.index = (self.index + 1) % len(self.lis)
+            self.renew_label()
+    
+    def base(self, func_name: str, *args):
         direct = {
             'grey': lambda img: img.convert('L'),
             'resize': lambda img: img.resize((self.w, self.h)),
@@ -117,39 +150,50 @@ class Pic:
             'scale': lambda img: img.resize((int(img.width * args[0]), int(img.height * args[0]))),
             'enlarge': lambda img: img.resize((int(img.width * 2), int(img.height * 2))),
             'shrink': lambda img: img.resize((int(img.width / 2), int(img.height / 2))),
-            'Roberts': lambda img: Roberts(img.convert('L')),
-            'Sobel': lambda img: Sobel(img.convert('L')),
-            'Prewitt': lambda img: Prewitt(img.convert('L')),
-            'Scharr': lambda img: Scharr(img.convert('L')),
-            'Laplacian': lambda img: Laplacian(img.convert('L')),
-            'Log': lambda img: Log(img.convert('L')),
-            'Canny': lambda img: Canny(img.convert('L')),
+        }
+        use_cv = {
+            'Roberts': lambda f: Roberts(f),
+            'Sobel': lambda f: Sobel(f),
+            'Prewitt': lambda f: Prewitt(f),
+            'Scharr': lambda f: Scharr(f),
+            'Laplacian': lambda f: Laplacian(f),
+            'Log': lambda f: Log(f),
+            'Canny': lambda f: Canny(f),
         }
         indirect = {
             'reverse': lambda data: np.ones(data.shape, dtype=np.uint8) * 255 - data,
             'histogram': lambda data: histeq(data)[0],
-
+            'high': lambda data: smoothing(np.mean(data, axis=2), args[0]),
+            'low': lambda data: smoothing(np.mean(data, axis=2), args[0], False),
+            'colorHigh': lambda data: np.dstack([smoothing(data[:,:,i], args[0]) for i in range(3)]),
+            'colorLow': lambda data: np.dstack([smoothing(data[:,:,i], args[0]) for i in range(3)])
         }
-        if func in direct:
-            func = direct[func]
-        elif func in indirect:
-            func = lambda img: Image.fromarray(
-                indirect[func](
-                    np.array(img)
+        if func_name in direct:
+            func = lambda f: direct[func_name](Image.open(f))
+        elif func_name in indirect:
+            func = lambda f: Image.fromarray(
+                indirect[func_name](
+                    np.array(Image.open(f))
                 ).astype('uint8')
             )
+        elif func_name in use_cv:
+            func = lambda f: Image.fromarray(
+                use_cv[func_name](cv2.imread(f, 0))
+            )
+        else:
+            self.ui.warning(f"No such function: {func_name}")
+            return
+
 
         if self.lis:
             folder = generate_name('')
-            os.makedirs(folder)
-            for f in self.lis:
-                img = Image.open(f)
-                func(img).save(os.path.join(folder, f.split('/')[-1]))
-            path = pic2gif(folder)
+            for f in tqdm(os.listdir(self.folder)):
+                func(os.path.join(self.folder, f)).save(os.path.join(folder, f))
+            path = pic2pdf(folder)
         else:
             suffix = self.name.split('.')[-1]
             path = generate_name(suffix)
-            func(self.img).save(path)
+            func(self.path).save(path)
         return path
 
 

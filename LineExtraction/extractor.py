@@ -1,23 +1,20 @@
-from collections import defaultdict
-from email.policy import default
-import enum
 from PIL import Image
-from matplotlib.colors import rgb_to_hsv
 import numpy as np
-from tables import Col
 from tqdm import tqdm
-import cv2
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 from scipy import interpolate
 import pylab as pl
+import sys
+sys.path.append('..')
+
+from util import generate_name
 
 class Extractor:
     def __init__(self, path, xs=0, xt=100, ys=0, yt=100):
         img = Image.open(path)
         img = img.convert('RGB')   # 修改颜色通道为RGB
         x, y = img.size   # 获得长和宽
-        print(x, y)
 
         self.points = []
         for i in tqdm(range(x)):
@@ -80,9 +77,11 @@ class Extractor:
         pl.yticks(fontsize=20)
 
         pl.legend(loc = 'lower right')
-        pl.show()
+        path = generate_name()
+        pl.savefig(path)
+        return path
 
 
 if __name__ == "__main__":
     ex = Extractor('out/21.jpg')
-    ex.interpolate()
+    ex.fit()

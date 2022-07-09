@@ -14,7 +14,7 @@
 打包命令：
 
 ```sh
-pyinstaller -D -i test.ico main.py
+pyinstaller -D -i test.ico main.py --noconfirm
 ```
 
 ### 程序界面

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1494</width>
-    <height>844</height>
+    <height>882</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -224,101 +224,73 @@
            <enum>Qt::AutoText</enum>
           </property>
          </widget>
-         <widget class="QPushButton" name="left1">
-          <property name="geometry">
-           <rect>
-            <x>260</x>
-            <y>680</y>
-            <width>30</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>&lt;</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="right1">
-          <property name="geometry">
-           <rect>
-            <x>360</x>
-            <y>680</y>
-            <width>30</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>&gt;</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="close1">
-          <property name="geometry">
-           <rect>
-            <x>660</x>
-            <y>0</y>
-            <width>30</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>×</string>
-          </property>
-         </widget>
         </widget>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="toIn">
+       <widget class="QFrame" name="frame_2">
         <property name="minimumSize">
          <size>
           <width>50</width>
-          <height>50</height>
+          <height>0</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>黑体</family>
-          <pointsize>24</pointsize>
-         </font>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
-        <property name="text">
-         <string>&lt;</string>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
         </property>
+        <widget class="QPushButton" name="toIn">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>380</y>
+           <width>50</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>黑体</family>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>&lt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="toOut">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>280</y>
+           <width>50</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>黑体</family>
+           <pointsize>24</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>&gt;</string>
+         </property>
+        </widget>
        </widget>
       </item>
       <item>
@@ -379,81 +351,6 @@
            <bool>true</bool>
           </property>
          </widget>
-         <widget class="QPushButton" name="left2">
-          <property name="geometry">
-           <rect>
-            <x>270</x>
-            <y>680</y>
-            <width>30</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>&lt;</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="right2">
-          <property name="geometry">
-           <rect>
-            <x>380</x>
-            <y>680</y>
-            <width>30</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>&gt;</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="close2">
-          <property name="geometry">
-           <rect>
-            <x>660</x>
-            <y>0</y>
-            <width>30</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>×</string>
-          </property>
-         </widget>
         </widget>
        </widget>
       </item>
@@ -471,6 +368,200 @@
        </spacer>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QFrame" name="frame">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1461</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <spacer name="horizontalSpacer_8">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="left1">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="close1">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>×</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="right1">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_10">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="left2">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="close2">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>×</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="right2">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>黑体</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_9">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
     <item>
      <spacer name="verticalSpacer_3">
@@ -541,7 +632,6 @@
     </property>
     <addaction name="add"/>
     <addaction name="reverse"/>
-    <addaction name="move"/>
     <addaction name="separator"/>
     <addaction name="grey"/>
     <addaction name="resize"/>
@@ -615,14 +705,12 @@
      </font>
     </property>
     <property name="title">
-     <string>PDF工具</string>
+     <string>实用工具</string>
     </property>
     <addaction name="toPDF"/>
-    <addaction name="toPIC"/>
-    <addaction name="removeAll"/>
-    <addaction name="reverseAll"/>
-    <addaction name="composeAll"/>
     <addaction name="toGIF"/>
+    <addaction name="remove_gray"/>
+    <addaction name="composeAll"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -777,7 +865,7 @@
   </action>
   <action name="resizeAll">
    <property name="text">
-    <string>全部输入等比缩放到适应</string>
+    <string>全部输入图像等比缩放到适应</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+R</string>
@@ -913,7 +1001,7 @@
   </action>
   <action name="toPDF">
    <property name="text">
-    <string>图片转PDF</string>
+    <string>全部输入图像转PDF</string>
    </property>
   </action>
   <action name="toPIC">
@@ -921,7 +1009,7 @@
     <string>PDF转图片</string>
    </property>
   </action>
-  <action name="removeAll">
+  <action name="remove_gray">
    <property name="text">
     <string>去除水印</string>
    </property>
@@ -938,7 +1026,7 @@
   </action>
   <action name="toGIF">
    <property name="text">
-    <string>转GIF</string>
+    <string>全部输入图像/PDF转GIF</string>
    </property>
   </action>
  </widget>
