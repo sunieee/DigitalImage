@@ -268,9 +268,9 @@
 | round | 色彩数 | 色彩带                                                       |
 | ----- | ------ | ------------------------------------------------------------ |
 | 0     | 215    | ![image-20220707092403611](https://n.sunie.top:9000/gallery/2022summer/202207070924514.png) |
-| 1     | 1647   | <img src="C:\Users\sy650\AppData\Roaming\Typora\typora-user-images\image-20220707092544177.png" alt="image-20220707092544177" style="zoom: 33%;" /> |
-| 2     | 6986   |                                                              |
-| 3     | 9998   |                                                              |
+| 1     | 1647   | <img src="https://n.sunie.top:9000/gallery/2022summer/202207102312188.png" alt="image-20220707092544177" style="zoom: 33%;" /> |
+| 2     | 6986   | ——                                                           |
+| 3     | 9998   | ——                                                           |
 
 ![image-20220709213412566](https://n.sunie.top:9000/gallery/2022summer/202207092134204.png)
 
