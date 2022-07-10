@@ -266,7 +266,6 @@ class MainWindow(QMainWindow):
 
     def FFT(self):
         t = self.get_current_pic()
-        t.save()
         img = cv2.imread(t.path, 0)
 
         f = fft2(img)

@@ -1,0 +1,10 @@
+PyQt5
+opencv-python==4.5.3.56
+numpy
+moviepy
+pdf2image
+tqdm
+numpy
+scipy
+pylab
+matplotlib
