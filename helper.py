@@ -1,9 +1,6 @@
 from PIL import Image
 import os
 from moviepy.editor import ImageSequenceClip
-import sys
-
-from sklearn.feature_extraction import img_to_graph
 from util import generate_name
 from pdf2image import convert_from_path
 from tqdm import tqdm

@@ -383,7 +383,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -711,6 +711,7 @@
     <addaction name="toGIF"/>
     <addaction name="remove_gray"/>
     <addaction name="composeAll"/>
+    <addaction name="horizontal_split"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -1027,6 +1028,11 @@
   <action name="toGIF">
    <property name="text">
     <string>全部输入图像/PDF转GIF</string>
+   </property>
+  </action>
+  <action name="horizontal_split">
+   <property name="text">
+    <string>水平分割</string>
    </property>
   </action>
  </widget>

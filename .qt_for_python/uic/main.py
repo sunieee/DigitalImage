@@ -116,6 +116,8 @@ class Ui_MainWindow(object):
         self.composeAll.setObjectName(u"composeAll")
         self.toGIF = QAction(MainWindow)
         self.toGIF.setObjectName(u"toGIF")
+        self.horizontal_split = QAction(MainWindow)
+        self.horizontal_split.setObjectName(u"horizontal_split")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -257,31 +259,31 @@ class Ui_MainWindow(object):
         self.frame.setMinimumSize(QSize(0, 32))
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
-        self.widget = QWidget(self.frame)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(0, 0, 1461, 34))
-        self.horizontalLayout_3 = QHBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.frame)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(0, 0, 1461, 34))
+        self.horizontalLayout_3 = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_8)
 
-        self.left1 = QPushButton(self.widget)
+        self.left1 = QPushButton(self.layoutWidget)
         self.left1.setObjectName(u"left1")
         self.left1.setMinimumSize(QSize(30, 30))
         self.left1.setFont(font1)
 
         self.horizontalLayout_3.addWidget(self.left1)
 
-        self.close1 = QPushButton(self.widget)
+        self.close1 = QPushButton(self.layoutWidget)
         self.close1.setObjectName(u"close1")
         self.close1.setMinimumSize(QSize(30, 30))
         self.close1.setFont(font1)
 
         self.horizontalLayout_3.addWidget(self.close1)
 
-        self.right1 = QPushButton(self.widget)
+        self.right1 = QPushButton(self.layoutWidget)
         self.right1.setObjectName(u"right1")
         self.right1.setMinimumSize(QSize(30, 30))
         self.right1.setFont(font1)
@@ -296,21 +298,21 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_6)
 
-        self.left2 = QPushButton(self.widget)
+        self.left2 = QPushButton(self.layoutWidget)
         self.left2.setObjectName(u"left2")
         self.left2.setMinimumSize(QSize(30, 30))
         self.left2.setFont(font1)
 
         self.horizontalLayout_3.addWidget(self.left2)
 
-        self.close2 = QPushButton(self.widget)
+        self.close2 = QPushButton(self.layoutWidget)
         self.close2.setObjectName(u"close2")
         self.close2.setMinimumSize(QSize(30, 30))
         self.close2.setFont(font1)
 
         self.horizontalLayout_3.addWidget(self.close2)
 
-        self.right2 = QPushButton(self.widget)
+        self.right2 = QPushButton(self.layoutWidget)
         self.right2.setObjectName(u"right2")
         self.right2.setMinimumSize(QSize(30, 30))
         self.right2.setFont(font1)
@@ -413,6 +415,7 @@ class Ui_MainWindow(object):
         self.menu_6.addAction(self.toGIF)
         self.menu_6.addAction(self.remove_gray)
         self.menu_6.addAction(self.composeAll)
+        self.menu_6.addAction(self.horizontal_split)
 
         self.retranslateUi(MainWindow)
 
@@ -540,6 +543,7 @@ class Ui_MainWindow(object):
         self.reverseAll.setText(QCoreApplication.translate("MainWindow", u"\u53cd\u8272", None))
         self.composeAll.setText(QCoreApplication.translate("MainWindow", u"\u5408\u6210\u5927\u56fe", None))
         self.toGIF.setText(QCoreApplication.translate("MainWindow", u"\u5168\u90e8\u8f93\u5165\u56fe\u50cf/PDF\u8f6cGIF", None))
+        self.horizontal_split.setText(QCoreApplication.translate("MainWindow", u"\u6c34\u5e73\u5206\u5272", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u8f93\u5165", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u8f93\u51fa", None))
         self.label_4.setText("")

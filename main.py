@@ -435,6 +435,9 @@ class MainWindow(QMainWindow):
         path = concat(folder, h)
         self.show_output(path)
 
+    def horizontal_split(self):
+        pass
+
     def left1(self):
         t = self.current_pic()
         if t and t.lis:
@@ -485,6 +488,8 @@ class MainWindow(QMainWindow):
         if t == 0:
             t = 0 if self.ui.tabWidgetR.count()>0 else -1
         self.ui.tabWidgetR.setCurrentIndex(t + 1)
+
+    
 
 app = QApplication([])
 mainw = MainWindow()
