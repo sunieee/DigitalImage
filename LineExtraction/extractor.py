@@ -38,12 +38,22 @@ class Extractor:
         #     self.color_img.putpixel(p, img.getpixel(p))
         # self.color_img.show()
 
+        
+
         self.cordinate = []
         for p in self.points:
-            self.cordinate.append((p[0]/x*(xt-xs) + xs, (1-p[1]/y)*(yt-ys) + ys))
-
-        print("曲线坐标点如下，格式为(x, y)") 
-        print(self.cordinate)
+            xx = round(p[0]/x*(xt-xs) + xs, 3)
+            yy = round((1-p[1]/y)*(yt-ys) + ys, 3)
+            if len(self.cordinate) and xx - self.cordinate[-1][0] < 1:
+                continue
+            self.cordinate.append((xx, yy))
+            
+        csv = generate_name('.csv')
+        print(f"曲线坐标点已保存在：{csv}")
+        with open(csv, 'w') as f:
+            f.write("x,y\n")
+            for p in self.cordinate:
+                f.write(f"{p[0]},{p[1]}\n")
 
         self.x = [p[0] for p in self.cordinate]
         self.y = [p[1] for p in self.cordinate]
@@ -65,7 +75,7 @@ class Extractor:
     
     def interpolate(self):
         '''差值'''
-        pl.figure(figsize=(10,8))
+        pl.figure(figsize=(7, 7))
         pl.plot(self.x, self.y,'ro')
         xnew = np.linspace(min(self.x), max(self.x), 1000)
         for kind in ['nearest', 'zero','linear','quadratic', 'cubic']:

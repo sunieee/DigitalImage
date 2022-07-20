@@ -44,7 +44,8 @@ class Color:
     @property
     def gray(self):
         # Luminosity算法计算灰度值
-        return self.r * 0.299 + self.g * 0.587 + self.b * 0.114
+        return (self.r + self.g + self.b) / 3
+        # return self.r * 0.299 + self.g * 0.587 + self.b * 0.114
 
     def hue_distance(self, other):
         t = abs(self.hsv[0] - other.hsv[0])
