@@ -12,7 +12,7 @@ sys.path.append('..')
 from util import generate_name
 
 class Extractor:
-    def __init__(self, path, xs=0, xt=100, ys=0, yt=100):
+    def __init__(self, path, xs=0, xt=100, ys=0, yt=100, z=4):
         img = Image.open(path)
         img = img.convert('RGB')   # 修改颜色通道为RGB
         x, y = img.size   # 获得长和宽
@@ -63,7 +63,7 @@ class Extractor:
 
         self.cordinate = []
         for c in cordinate:
-            if self.cordinate and distance(self.cordinate[-1], c) > 10:
+            if not self.cordinate or self.cordinate and distance(self.cordinate[-1], c) > z:
                 self.cordinate.append(c)
             
         csv = generate_name('.csv')
@@ -73,12 +73,12 @@ class Extractor:
             for p in self.cordinate:
                 f.write(f"{p[0]},{p[1]}\n")
 
-        self.x = [get_x(p) for p in cordinate]
-        self.y = [p[1] for p in cordinate]
+        self.x = [get_x(p) for p in self.cordinate]
+        self.y = [p[1] for p in self.cordinate]
 
-        # print("cor", cordinate)
-        # print(self.x)
-        # print(self.y)
+        print("cor", self.cordinate)
+        print(self.x)
+        print(self.y)
     
     def fit(self):
         '''拟合'''

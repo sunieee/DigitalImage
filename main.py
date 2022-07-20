@@ -265,10 +265,13 @@ class MainWindow(QMainWindow):
     def singleLine(self):
         x = self.ui.horizonInput.toPlainText()
         y = self.ui.verticalInput.toPlainText()
+        z = self.ui.disInput.toPlainText()
         if not x:
             x = "0-100"
         if not y:
             y = "0-100"
+        if not z:
+            z = "4"
         try:
             xs, xt = x.split('-')
             ys, yt = y.split('-')
@@ -276,13 +279,15 @@ class MainWindow(QMainWindow):
             xt = int(xt)
             ys = int(ys)
             yt = int(yt)
+            z = int(z)
         except:
             self.warning("坐标轴范围输入错误！将默认使用0-100")
             xs = ys = 0
             xt = yt = 100
+            z = 4
 
         t = self.get_current_pic()
-        ex = Extractor(t.path, xs, xt, ys, yt)
+        ex = Extractor(t.path, xs, xt, ys, yt, z=z)
         path = ex.interpolate()
         self.show_output(path)
 
