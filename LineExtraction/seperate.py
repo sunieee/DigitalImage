@@ -127,7 +127,7 @@ class Seperator:
         print("最大颜色数目", max(dic.values()))
         print("白色数目", dic[Color((255,255,255))])
 
-        thresh = x
+        thresh = x / 2
         print('自动调整有效点数阈值:')
         while True:
             colors = [c for c, times in dic.items() if times > thresh and c.valid()]
@@ -136,10 +136,11 @@ class Seperator:
                 break
             thresh  += 1
 
+        colors.sort(key = lambda x: dic[x], reverse=True)
         l = len(colors)
         print("总共颜色数：", len(colors))
-        for c in colors:
-            print(dic[c], str(c), c.hsv[0])
+        for ix, c in enumerate(colors):
+            print(f"第{ix+1}组线条，点数为{dic[c]}， RGB颜色为{str(c)}， 色相为{c.hsv[0]}")
 
 
         # 生成l个图片存储颜色
