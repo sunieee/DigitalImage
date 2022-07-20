@@ -1,4 +1,5 @@
 import enum
+from math import sqrt
 from PIL import Image
 import numpy as np
 from tqdm import tqdm
@@ -16,13 +17,24 @@ class Extractor:
         img = Image.open(path)
         img = img.convert('RGB')   # 修改颜色通道为RGB
         x, y = img.size   # 获得长和宽
+        max_dis = sqrt(z * 100) / (xt-xs)
 
+        # 一定包含最上面的点
         points = []
-        for i in tqdm(range(x)):
-            for k in range(y):
+        for k in range(y):
+            for i in range(x):
+                pixel = img.getpixel((i, k))
+                if np.sum(pixel) > 50 and i < x/3:
+                    points.append((i, k))
+                    break
+            if points:
+                break
+        
+        for i in tqdm(range(points[-1][0], x)):
+            for k in range(points[-1][1], y):
                 pixel = img.getpixel((i, k))
                 if np.sum(pixel) > 50:
-                    if not points or points and k >= points[-1][1]:
+                    if k - points[-1][1] <= max_dis * y:
                         points.append((i, k))
                         break
         # print(points)
@@ -38,11 +50,20 @@ class Extractor:
 
         y_cor = [p[1] for p in points]
         points = []
-        for k in tqdm(range(y-1, 0, -1)):
-            for i in range(x-1, 0, -1):
+        for i in range(x-1, 0, -1):
+            for k in range(y-1, 0, -1):
+                pixel = img.getpixel((i, k))
+                if np.sum(pixel) > 50 and k > y/3:
+                    points.append((i, k))
+                    break
+            if points:
+                break
+
+        for k in tqdm(range(points[-1][1], 0, -1)):
+            for i in range(points[-1][0], 0, -1):
                 pixel = img.getpixel((i, k))
                 if np.sum(pixel) > 50 and k not in y_cor:
-                    if not points or points and points[-1][0] >= i:
+                    if points[-1][0] - i <= max_dis * x:
                         points.append((i, k))
                         break
         # print(points)
@@ -63,7 +84,7 @@ class Extractor:
 
         self.cordinate = []
         for c in cordinate:
-            if not self.cordinate or self.cordinate and distance(self.cordinate[-1], c) > z:
+            if not self.cordinate or self.cordinate and z < distance(self.cordinate[-1], c) < 100 * z:
                 self.cordinate.append(c)
         
         remove_lis = []
