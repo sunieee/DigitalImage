@@ -32,10 +32,23 @@ class Tailor:
 
         print("坐标轴位置：", yAxis, xAxis)
         print("坐标轴线段：", yFrag, xFrag)
-        ys = yFrag[0] + 3
+
+        # print(len(self.a0m), len(self.a1m))
+
+        ys = yFrag[0] + 1
         yt = xAxis[0] - 1
         xs = yAxis[1] + 1
-        xt = xFrag[1] - 3
+        xt = xFrag[1] - 1
+        # 避免黑色方框！
+        black_thresh = 150
+        while self.a0m[xs] < black_thresh:
+            xs += 1
+        while self.a0m[xt] < black_thresh:
+            xt -= 1
+        while self.a1m[ys] < black_thresh:
+            ys += 1
+        while self.a1m[yt] < black_thresh:
+            yt -= 1
 
         print(f'分割：({ys},{yt}) * ({xs},{xt})')
         self.tailor = imgData[ys:yt, xs:xt]

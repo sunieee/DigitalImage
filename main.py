@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication,QMainWindow, QFileDialog, QPushButton
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QInputDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QInputDialog, QWidget
 from cv2 import drawContours
 from LineExtraction.extractor import Extractor
 from Ui_main import Ui_MainWindow
@@ -243,19 +243,46 @@ class MainWindow(QMainWindow):
 
 
     def colorSeperate(self):
+        c = self.ui.colorInput.toPlainText()
+        if not c:
+            c = 6
+        try:
+            c = int(c)
+        except:
+            self.warning("色彩分离数输入错误！将默认使用6")
+            c = 6           
+
         t = self.get_current_pic()
         path = t.path
         if np.mean(t.imgData[:]) > 200:
             path = t.base('reverse')
-        s = Seperator(path)
+        s = Seperator(path, line_num=c)
         for i in range(len(s.color_img)):
             arr = np.array(s.color_img[i])
             self.show_array(arr)
 
 
     def singleLine(self):
+        x = self.ui.horizonInput.toPlainText()
+        y = self.ui.verticalInput.toPlainText()
+        if not x:
+            x = "0-100"
+        if not y:
+            y = "0-100"
+        try:
+            xs, xt = x.split('-')
+            ys, yt = y.split('-')
+            xs = int(xs)
+            xt = int(xt)
+            ys = int(ys)
+            yt = int(yt)
+        except:
+            self.warning("坐标轴范围输入错误！将默认使用0-100")
+            xs = ys = 0
+            xt = yt = 100
+
         t = self.get_current_pic()
-        ex = Extractor(t.path)
+        ex = Extractor(t.path, xs, xt, ys, yt)
         path = ex.interpolate()
         self.show_output(path)
 

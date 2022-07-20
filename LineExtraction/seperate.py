@@ -90,7 +90,7 @@ class Color:
 
 
     def foreground(self):
-        return self.gray > 230
+        return self.gray > 235
 
 
 def hue_split(img_path):

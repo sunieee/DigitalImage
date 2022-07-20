@@ -32,7 +32,7 @@ class Extractor:
                         self.points.append((i, k))
                         break
 
-        print("points", self.points)
+        # print("points", self.points)
         # self.color_img = Image.new('RGB', (x, y), 'black')
         # for p in self.points:
         #     self.color_img.putpixel(p, img.getpixel(p))
@@ -40,9 +40,10 @@ class Extractor:
 
         self.cordinate = []
         for p in self.points:
-            self.cordinate.append((p[0]/x*100, (1-p[1]/y)*100))
+            self.cordinate.append((p[0]/x*(xt-xs) + xs, (1-p[1]/y)*(yt-ys) + ys))
 
-        # print(self.cordinate)
+        print("曲线坐标点如下，格式为(x, y)") 
+        print(self.cordinate)
 
         self.x = [p[0] for p in self.cordinate]
         self.y = [p[1] for p in self.cordinate]
@@ -64,7 +65,7 @@ class Extractor:
     
     def interpolate(self):
         '''差值'''
-        pl.figure(figsize=(12,9))
+        pl.figure(figsize=(10,8))
         pl.plot(self.x, self.y,'ro')
         xnew = np.linspace(min(self.x), max(self.x), 1000)
         for kind in ['nearest', 'zero','linear','quadratic', 'cubic']:
