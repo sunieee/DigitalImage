@@ -70,7 +70,7 @@ class Extractor:
         print(f"曲线坐标点已保存在：{csv}")
         with open(csv, 'w') as f:
             f.write("x,y\n")
-            for p in cordinate:
+            for p in self.cordinate:
                 f.write(f"{p[0]},{p[1]}\n")
 
         self.x = [get_x(p) for p in cordinate]
