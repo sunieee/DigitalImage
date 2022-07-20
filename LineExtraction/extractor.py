@@ -63,7 +63,7 @@ class Extractor:
 
         self.cordinate = []
         for c in cordinate:
-            if self.cordinate and distance(self.cordinate[-1], c) > 5:
+            if self.cordinate and distance(self.cordinate[-1], c) > 10:
                 self.cordinate.append(c)
             
         csv = generate_name('.csv')
