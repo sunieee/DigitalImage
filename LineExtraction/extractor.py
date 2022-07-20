@@ -65,6 +65,19 @@ class Extractor:
         for c in cordinate:
             if not self.cordinate or self.cordinate and distance(self.cordinate[-1], c) > z:
                 self.cordinate.append(c)
+        
+        remove_lis = []
+        for c in self.cordinate:
+            valid = False
+            for cc in self.cordinate:
+                if cc != c and distance(c, cc) < 25 * z:
+                    valid = True
+                    break
+            if not valid:
+                remove_lis.append(c)
+        print(remove_lis)
+        for t in remove_lis:
+            self.cordinate.remove(t)
             
         csv = generate_name('.csv')
         print(f"曲线坐标点已保存在：{csv}")
@@ -76,9 +89,9 @@ class Extractor:
         self.x = [get_x(p) for p in self.cordinate]
         self.y = [p[1] for p in self.cordinate]
 
-        print("cor", self.cordinate)
-        print(self.x)
-        print(self.y)
+        # print("cor", self.cordinate)
+        # print(self.x)
+        # print(self.y)
     
     def fit(self):
         '''拟合'''
