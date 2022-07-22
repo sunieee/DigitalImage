@@ -271,25 +271,31 @@ class MainWindow(QMainWindow):
         if not y:
             y = "0-100"
         if not z:
-            z = "4"
+            z = "5-20"
         try:
             xs, xt = x.split('-')
             ys, yt = y.split('-')
+            z, zm = z.split('-')
             xs = int(xs)
             xt = int(xt)
             ys = int(ys)
             yt = int(yt)
             z = int(z)
+            zm = int(zm)
         except:
             self.warning("坐标轴范围输入错误！将默认使用0-100")
             xs = ys = 0
             xt = yt = 100
-            z = 4
+            z = 5
+            zm = 20
 
         t = self.get_current_pic()
-        ex = Extractor(t.path, xs, xt, ys, yt, z=z)
-        path = ex.interpolate()
-        self.show_output(path)
+        ex = Extractor(t.path, xs, xt, ys, yt, z, zm)
+        try:
+            path = ex.interpolate()
+            self.show_output(path)
+        except:
+            self.warning("插值失败，提取数据点异常。请尝试其他取点距区间（最小取点距为取点的最小距离，最大取点距为离群点距离下限）")
 
 
     def allLine(self):

@@ -13,11 +13,10 @@ sys.path.append('..')
 from util import generate_name
 
 class Extractor:
-    def __init__(self, path, xs=0, xt=100, ys=0, yt=100, z=4):
+    def __init__(self, path, xs=0, xt=100, ys=0, yt=100, z=5, zm=20):
         img = Image.open(path)
         img = img.convert('RGB')   # 修改颜色通道为RGB
         x, y = img.size   # 获得长和宽
-        max_dis = sqrt(z * 100) / (xt-xs)
 
         # 一定包含最上面的点
         points = []
@@ -30,14 +29,14 @@ class Extractor:
             if points:
                 break
         
-        for i in range(points[-1][0], x):
+        for i in range(points[-1][0] + 1, x):
             for k in range(points[-1][1], y):
                 pixel = img.getpixel((i, k))
                 if np.sum(pixel) > 50:
-                    if k - points[-1][1] <= max_dis * y:
+                    if k - points[-1][1] <= zm * 2:
                         points.append((i, k))
                         break
-        print("横向坐标点对", points)
+        print(f"像素横向坐标点对共{len(points)}个，隔5样例：", points[::5])
 
         cordinate = []
         for ix, p in enumerate(points):
@@ -57,14 +56,14 @@ class Extractor:
             if points:
                 break
 
-        for k in range(points[-1][1], 0, -1):
+        for k in range(points[-1][1] - 1, 0, -1):
             for i in range(points[-1][0], 0, -1):
                 pixel = img.getpixel((i, k))
                 if np.sum(pixel) > 50:
-                    if points[-1][0] - i <= max_dis * x:
+                    if points[-1][0] - i <= zm * 2:
                         points.append((i, k))
                         break
-        print("纵向坐标点对", points)
+        print(f"像素纵向坐标点对共{len(points)}个，隔5样例：", points[::5])
 
         for ix, p in enumerate(points):
             xx = round(p[0]/x*(xt-xs) + xs, 3)
@@ -76,27 +75,28 @@ class Extractor:
         def get_x(p):
             return (p[0] * 100000 - p[1]) / 100000
         def distance(x, y):
-            return (x[0] - y[0]) ** 2 + (x[1] - y[1]) ** 2
+            return sqrt((x[0] - y[0]) ** 2 + (x[1] - y[1]) ** 2)
         
         cordinate.sort(key=get_x)
 
         self.cordinate = []
         for c in cordinate:
-            if not self.cordinate or self.cordinate and z < distance(self.cordinate[-1], c) < 400 * z:
+            if not self.cordinate or self.cordinate and z < distance(self.cordinate[-1], c) < zm * 2:
                 self.cordinate.append(c)
         
         remove_lis = []
         for c in self.cordinate:
             valid = False
             for cc in self.cordinate:
-                if cc != c and distance(c, cc) < 25 * z:
+                if cc != c and distance(c, cc) < zm:
                     valid = True
                     break
             if not valid:
                 remove_lis.append(c)
-        print("去除离群点：", remove_lis)
+        print(f"去除离群点共{len(remove_lis)}个：", remove_lis)
         for t in remove_lis:
             self.cordinate.remove(t)
+        print(f"坐标点对共{len(self.cordinate)}个，隔5样例：", self.cordinate[::5])
             
         csv = generate_name('.csv')
         print(f"曲线坐标点已保存在：{csv}")

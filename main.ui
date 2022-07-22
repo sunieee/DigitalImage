@@ -442,7 +442,7 @@
           </font>
          </property>
          <property name="text">
-          <string>最小取点距</string>
+          <string>取点距区间</string>
          </property>
         </widget>
         <widget class="QTextEdit" name="disInput">
@@ -467,7 +467,7 @@
           </font>
          </property>
          <property name="placeholderText">
-          <string>4</string>
+          <string>5-20</string>
          </property>
         </widget>
        </widget>
