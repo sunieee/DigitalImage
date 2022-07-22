@@ -30,14 +30,14 @@ class Extractor:
             if points:
                 break
         
-        for i in tqdm(range(points[-1][0], x)):
+        for i in range(points[-1][0], x):
             for k in range(points[-1][1], y):
                 pixel = img.getpixel((i, k))
                 if np.sum(pixel) > 50:
                     if k - points[-1][1] <= max_dis * y:
                         points.append((i, k))
                         break
-        # print(points)
+        print("横向坐标点对", points)
 
         cordinate = []
         for ix, p in enumerate(points):
@@ -47,8 +47,6 @@ class Extractor:
                 continue
             cordinate.append((xx, yy))
 
-
-        y_cor = [p[1] for p in points]
         points = []
         for i in range(x-1, 0, -1):
             for k in range(y-1, 0, -1):
@@ -59,14 +57,14 @@ class Extractor:
             if points:
                 break
 
-        for k in tqdm(range(points[-1][1], 0, -1)):
+        for k in range(points[-1][1], 0, -1):
             for i in range(points[-1][0], 0, -1):
                 pixel = img.getpixel((i, k))
-                if np.sum(pixel) > 50 and k not in y_cor:
+                if np.sum(pixel) > 50:
                     if points[-1][0] - i <= max_dis * x:
                         points.append((i, k))
                         break
-        # print(points)
+        print("纵向坐标点对", points)
 
         for ix, p in enumerate(points):
             xx = round(p[0]/x*(xt-xs) + xs, 3)
@@ -84,7 +82,7 @@ class Extractor:
 
         self.cordinate = []
         for c in cordinate:
-            if not self.cordinate or self.cordinate and z < distance(self.cordinate[-1], c) < 100 * z:
+            if not self.cordinate or self.cordinate and z < distance(self.cordinate[-1], c) < 400 * z:
                 self.cordinate.append(c)
         
         remove_lis = []
@@ -96,7 +94,7 @@ class Extractor:
                     break
             if not valid:
                 remove_lis.append(c)
-        print(remove_lis)
+        print("去除离群点：", remove_lis)
         for t in remove_lis:
             self.cordinate.remove(t)
             
