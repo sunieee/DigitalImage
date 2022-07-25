@@ -40,7 +40,7 @@ class Tailor:
         xs = yAxis[1] + 1
         xt = xFrag[1] - 1
         # 避免黑色方框！
-        black_thresh = 150
+        black_thresh = 100
         while self.a0m[xs] < black_thresh:
             xs += 1
         while self.a0m[xt] < black_thresh:
@@ -109,9 +109,11 @@ class Tailor:
 
     def get_dark_frag(self, dark_index):
         line = []
+
         def add_line(i):
             j = i + 1
-            while j in dark_index:
+            while j in dark_index or j + 1 in dark_index or j + 2 in dark_index or j + 3 in dark_index \
+                or j + 4 in dark_index or j + 5 in dark_index:
                 j += 1
             line.append((i, j-1))
 
