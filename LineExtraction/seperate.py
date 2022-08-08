@@ -6,8 +6,8 @@ import cv2
 
 class Color:
     max_distance = 0.2
-    b = 50
-    w = 235
+    black = 50
+    white = 235
 
     def __init__(self, data):
         self.r = data[0]
@@ -38,6 +38,13 @@ class Color:
     @property
     def rgb(self):
         return (self.r, self.g, self.b)
+    
+    @property
+    def amplified_rgb(self):
+        def amplify(x):
+            t = Color.black * 2
+            return t + int(x * (256 - t) / 256)
+        return (amplify(self.r), amplify(self.g), amplify(self.b))
 
     @property
     def hsv(self):
@@ -89,11 +96,11 @@ class Color:
     #     return None
 
     def valid(self):
-        return self.gray > Color.b
+        return self.gray > Color.black
 
 
     def foreground(self):
-        return self.gray > Color.w or self.r == self.g == self.b and self.gray > Color.b
+        return self.gray > Color.white or self.r == self.g == self.b and self.gray > Color.black
 
 
 def hue_split(img_path):
@@ -107,8 +114,8 @@ def hue_split(img_path):
 
 class Seperator:
     def __init__(self, path, line_num=6, b=50, w=235):
-        Color.b = b
-        Color.w = w
+        Color.black = b
+        Color.white = w
         print(f'采用的黑白色彩区间：{b}~{w}')
         img = Image.open(path)
         img = img.convert('RGB')   # 修改颜色通道为RGB
@@ -162,7 +169,7 @@ class Seperator:
                     color = c.in_lis(colors)  # or c.in_lis_hue(colors)
                     if color and color in colors:
                         index = colors.index(color)
-                        self.color_img[index].putpixel((i, k), c.rgb)
+                        self.color_img[index].putpixel((i, k), c.amplified_rgb)
         
         # for i in range(l):
         #     self.color_img[i].show()
