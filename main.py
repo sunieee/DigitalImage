@@ -243,52 +243,37 @@ class MainWindow(QMainWindow):
 
 
     def colorSeperate(self):
-        c = self.ui.colorInput.toPlainText()
-        if not c:
-            c = 6
-        try:
-            c = int(c)
-        except:
-            self.warning("色彩分离数输入错误！将默认使用6")
-            c = 6           
+        c = self.get_input(self.ui.colorInput.toPlainText(), "6")
+        b, w = self.get_input(self.ui.bwInput.toPlainText(), "50~235")     
 
         t = self.get_current_pic()
         path = t.path
         if np.mean(t.imgData[:]) > 200:
             path = t.base('reverse')
-        s = Seperator(path, line_num=c)
+        s = Seperator(path, line_num=c, b=b, w=w)
         for i in range(len(s.color_img)):
             arr = np.array(s.color_img[i])
             self.show_array(arr)
 
 
-    def singleLine(self):
-        x = self.ui.horizonInput.toPlainText()
-        y = self.ui.verticalInput.toPlainText()
-        z = self.ui.disInput.toPlainText()
-        if not x:
-            x = "0-100"
-        if not y:
-            y = "0-100"
-        if not z:
-            z = "5-20"
+    @staticmethod
+    def get_input(s, default):
+        def intfy(s):
+            lis = [int(x) for x in s.split('~')]            
+            return lis[0] if len(lis) == 1 else lis
+        if not s:
+            s = default
         try:
-            xs, xt = x.split('-')
-            ys, yt = y.split('-')
-            z, zm = z.split('-')
-            xs = int(xs)
-            xt = int(xt)
-            ys = int(ys)
-            yt = int(yt)
-            z = int(z)
-            zm = int(zm)
+            return intfy(s)
         except:
-            self.warning("坐标轴范围输入错误！将默认使用0-100")
-            xs = ys = 0
-            xt = yt = 100
-            z = 5
-            zm = 20
+            self.warning(f"{s}输入错误！将默认使用{default}")
+            return intfy(default)
 
+
+    def singleLine(self):
+        xs, xt = self.get_input(self.ui.horizonInput.toPlainText(), "0~100")
+        ys, yt = self.get_input(self.ui.verticalInput.toPlainText(), "0~100")
+        z, zm = self.get_input(self.ui.disInput.toPlainText(), "5~20")
         t = self.get_current_pic()
         ex = Extractor(t.path, xs, xt, ys, yt, z, zm)
         try:

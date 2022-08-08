@@ -6,6 +6,8 @@ import cv2
 
 class Color:
     max_distance = 0.2
+    b = 50
+    w = 235
 
     def __init__(self, data):
         self.r = data[0]
@@ -87,11 +89,11 @@ class Color:
     #     return None
 
     def valid(self):
-        return self.gray > 50
+        return self.gray > Color.b
 
 
     def foreground(self):
-        return self.gray > 235 or self.r == self.g == self.b and self.gray > 100
+        return self.gray > Color.w or self.r == self.g == self.b and self.gray > Color.b
 
 
 def hue_split(img_path):
@@ -104,7 +106,10 @@ def hue_split(img_path):
 
 
 class Seperator:
-    def __init__(self, path, line_num=6):
+    def __init__(self, path, line_num=6, b=50, w=235):
+        Color.b = b
+        Color.w = w
+        print(f'采用的黑白色彩区间：{b}~{w}')
         img = Image.open(path)
         img = img.convert('RGB')   # 修改颜色通道为RGB
         x, y = img.size   # 获得长和宽
@@ -132,7 +137,7 @@ class Seperator:
         print('自动调整有效点数阈值:')
         while True:
             colors = [c for c, times in dic.items() if times > thresh and c.valid()]
-            print(thresh, len(colors))
+            print(f"{thresh}({len(colors)})", end="  ")
             if len(colors) <= line_num:
                 break
             thresh  += 1

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1524</width>
-    <height>882</height>
+    <width>1549</width>
+    <height>896</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,8 +22,8 @@
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>17</width>
-        <height>3</height>
+        <width>14</width>
+        <height>7</height>
        </size>
       </property>
      </spacer>
@@ -47,7 +47,7 @@
        <widget class="QLabel" name="label_2">
         <property name="font">
          <font>
-          <family>黑体</family>
+          <family>明黑</family>
           <pointsize>18</pointsize>
          </font>
         </property>
@@ -63,8 +63,8 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>0</width>
-          <height>0</height>
+          <width>13</width>
+          <height>13</height>
          </size>
         </property>
        </spacer>
@@ -86,7 +86,7 @@
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
-          <family>黑体</family>
+          <family>明黑</family>
           <pointsize>18</pointsize>
          </font>
         </property>
@@ -117,8 +117,8 @@
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>20</width>
-        <height>5</height>
+        <width>17</width>
+        <height>7</height>
        </size>
       </property>
      </spacer>
@@ -213,7 +213,7 @@
           </property>
           <property name="font">
            <font>
-            <family>黑体</family>
+            <family>明黑</family>
             <pointsize>18</pointsize>
            </font>
           </property>
@@ -231,7 +231,7 @@
        <widget class="QFrame" name="frame_2">
         <property name="minimumSize">
          <size>
-          <width>80</width>
+          <width>105</width>
           <height>0</height>
          </size>
         </property>
@@ -241,70 +241,14 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QPushButton" name="toIn">
+        <widget class="QGroupBox" name="groupBox">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>580</y>
-           <width>50</width>
-           <height>50</height>
+           <x>0</x>
+           <y>10</y>
+           <width>101</width>
+           <height>211</height>
           </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>黑体</family>
-           <pointsize>24</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>&lt;</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="toOut">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>490</y>
-           <width>50</width>
-           <height>50</height>
-          </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>黑体</family>
-           <pointsize>24</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>&gt;</string>
-         </property>
-        </widget>
-        <widget class="QTextEdit" name="horizonInput">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>60</y>
-           <width>80</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>0</height>
-          </size>
          </property>
          <property name="font">
           <font>
@@ -312,27 +256,106 @@
            <pointsize>10</pointsize>
           </font>
          </property>
-         <property name="toolTip">
-          <string/>
+         <property name="title">
+          <string>颜色通道分离</string>
          </property>
-         <property name="placeholderText">
-          <string>0-100</string>
-         </property>
+         <widget class="QTextEdit" name="colorInput">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>60</y>
+            <width>80</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>6</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_10">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>120</y>
+            <width>81</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>明黑</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>黑白色彩阈值</string>
+          </property>
+         </widget>
+         <widget class="QTextEdit" name="bwInput">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>150</y>
+            <width>80</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>50~235</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_8">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>81</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>明黑</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>色彩分离数目</string>
+          </property>
+         </widget>
         </widget>
-        <widget class="QTextEdit" name="verticalInput">
+        <widget class="QGroupBox" name="groupBox_2">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>140</y>
-           <width>80</width>
-           <height>31</height>
+           <x>0</x>
+           <y>240</y>
+           <width>101</width>
+           <height>271</height>
           </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>0</height>
-          </size>
          </property>
          <property name="font">
           <font>
@@ -340,135 +363,144 @@
            <pointsize>10</pointsize>
           </font>
          </property>
-         <property name="placeholderText">
-          <string>0-100</string>
+         <property name="title">
+          <string>提取曲线数据点</string>
          </property>
-        </widget>
-        <widget class="QLabel" name="label_6">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>30</y>
-           <width>71</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>等线</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>水平坐标轴</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_7">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>110</y>
-           <width>71</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>等线</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>垂直坐标轴</string>
-         </property>
-        </widget>
-        <widget class="QTextEdit" name="colorInput">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>230</y>
-           <width>80</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>明黑</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="placeholderText">
-          <string>6</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_8">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>200</y>
-           <width>71</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>等线</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>色彩分离数</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_9">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>290</y>
-           <width>71</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>等线</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>取点距区间</string>
-         </property>
-        </widget>
-        <widget class="QTextEdit" name="disInput">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>320</y>
-           <width>80</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>明黑</family>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="placeholderText">
-          <string>5-20</string>
-         </property>
+         <widget class="QTextEdit" name="horizonInput">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>140</y>
+            <width>80</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>0~100</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_7">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>190</y>
+            <width>81</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>明黑</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>垂直坐标范围</string>
+          </property>
+         </widget>
+         <widget class="QTextEdit" name="disInput">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>60</y>
+            <width>80</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>5~20</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_6">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>110</y>
+            <width>81</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>明黑</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>水平坐标范围</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_9">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>81</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>明黑</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>取点距离区间</string>
+          </property>
+         </widget>
+         <widget class="QTextEdit" name="verticalInput">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>220</y>
+            <width>80</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>0~100</string>
+          </property>
+         </widget>
         </widget>
        </widget>
       </item>
@@ -549,198 +581,215 @@
      </layout>
     </item>
     <item>
-     <widget class="QFrame" name="frame">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>32</height>
-       </size>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>1461</width>
-         <height>34</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <spacer name="horizontalSpacer_8">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="left1">
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>&lt;</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="close1">
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>×</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="right1">
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_10">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="left2">
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>&lt;</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="close2">
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>×</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="right2">
-          <property name="minimumSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>黑体</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_9">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+      <item>
+       <spacer name="horizontalSpacer_8">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="left1">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>&lt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="close1">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>×</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="right1">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_10">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="toIn">
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>&lt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="toOut">
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>24</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="left2">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>&lt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="close2">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>×</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="right2">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>黑体</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
     <item>
      <spacer name="verticalSpacer_3">
@@ -749,8 +798,8 @@
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>17</width>
-        <height>3</height>
+        <width>14</width>
+        <height>7</height>
        </size>
       </property>
      </spacer>
@@ -767,7 +816,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1524</width>
+     <width>1549</width>
      <height>27</height>
     </rect>
    </property>
@@ -874,7 +923,6 @@
     <addaction name="tailor"/>
     <addaction name="colorSeperate"/>
     <addaction name="singleLine"/>
-    <addaction name="allLine"/>
    </widget>
    <widget class="QMenu" name="menu_6">
     <property name="font">
@@ -905,7 +953,7 @@
    </property>
    <property name="font">
     <font>
-     <family>黑体</family>
+     <family>明黑</family>
      <pointsize>12</pointsize>
     </font>
    </property>
@@ -917,6 +965,11 @@
    <property name="text">
     <string>导出当前输入</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
@@ -924,6 +977,11 @@
   <action name="saveR">
    <property name="text">
     <string>导出当前输入</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
@@ -933,6 +991,11 @@
    <property name="text">
     <string>关闭当前输入</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
    </property>
@@ -941,20 +1004,40 @@
    <property name="text">
     <string>加（所有输入图像）</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="reverse">
    <property name="text">
     <string>求反</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
   </action>
   <action name="rotate">
    <property name="text">
     <string>逆时针旋转</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="histogram">
    <property name="text">
     <string>直方图均衡化</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+G</string>
@@ -963,6 +1046,11 @@
   <action name="FFT">
    <property name="text">
     <string>傅里叶变换(输出DFT/增强/反变换图)</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
@@ -977,6 +1065,11 @@
    <property name="text">
     <string>高通滤波</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+H</string>
    </property>
@@ -984,6 +1077,11 @@
   <action name="enlarge">
    <property name="text">
     <string>放大2倍</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+=</string>
@@ -993,6 +1091,11 @@
    <property name="text">
     <string>缩小2倍</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Shift+-</string>
    </property>
@@ -1000,6 +1103,11 @@
   <action name="scale">
    <property name="text">
     <string>等比缩放到...</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
   </action>
   <action name="fouriour">
@@ -1011,6 +1119,11 @@
    <property name="text">
     <string>傅里叶描述子M项数重构（输出描述子/重构轮廓）</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Shift+M</string>
    </property>
@@ -1019,25 +1132,50 @@
    <property name="text">
     <string>Roberts</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="Sobel">
    <property name="text">
     <string>Sobel</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
   </action>
   <action name="Prewitt">
    <property name="text">
     <string>Prewitt</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="Laplacian">
    <property name="text">
     <string>Laplacian</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="resize">
    <property name="text">
     <string>等比缩放到适应</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
@@ -1046,6 +1184,11 @@
   <action name="resizeAll">
    <property name="text">
     <string>全部输入图像等比缩放到适应</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+R</string>
@@ -1064,6 +1207,11 @@
   <action name="closeR">
    <property name="text">
     <string>关闭当前输出</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+W</string>
@@ -1091,6 +1239,11 @@
    <property name="text">
     <string>转为灰度图</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
    </property>
@@ -1098,6 +1251,11 @@
   <action name="low">
    <property name="text">
     <string>低通滤波</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
@@ -1107,20 +1265,40 @@
    <property name="text">
     <string>Scharr</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="Log">
    <property name="text">
     <string>Log</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
   </action>
   <action name="Canny">
    <property name="text">
     <string>Canny</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="tailor">
    <property name="text">
     <string>裁剪坐标轴</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
@@ -1138,13 +1316,23 @@
    <property name="text">
     <string>颜色通道分离</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
    </property>
   </action>
   <action name="singleLine">
    <property name="text">
-    <string>提取单一曲线数据点</string>
+    <string>提取曲线数据点</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
@@ -1167,6 +1355,11 @@
    <property name="text">
     <string>彩色高通滤波</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Shift+H</string>
    </property>
@@ -1175,6 +1368,11 @@
    <property name="text">
     <string>彩色低通滤波</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Shift+L</string>
    </property>
@@ -1182,6 +1380,11 @@
   <action name="toPDF">
    <property name="text">
     <string>全部输入图像转PDF</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
   </action>
   <action name="toPIC">
@@ -1193,6 +1396,11 @@
    <property name="text">
     <string>去除水印</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="reverseAll">
    <property name="text">
@@ -1203,15 +1411,30 @@
    <property name="text">
     <string>合成大图</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="toGIF">
    <property name="text">
     <string>全部输入图像/PDF转GIF</string>
    </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
+   </property>
   </action>
   <action name="horizontal_split">
    <property name="text">
     <string>水平分割</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>明黑</family>
+    </font>
    </property>
   </action>
  </widget>
