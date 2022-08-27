@@ -9,6 +9,7 @@ from scipy import interpolate
 import pylab as pl
 import sys
 sys.path.append('..')
+from LineExtraction.seperate import Color
 
 from util import generate_name
 
@@ -23,7 +24,7 @@ class Extractor:
         for k in range(y):
             for i in range(x):
                 pixel = img.getpixel((i, k))
-                if np.sum(pixel) > 50 and i < x/3:
+                if np.sum(pixel) > Color.black and i < x/3:
                     points.append((i, k))
                     break
             if points:
@@ -32,7 +33,7 @@ class Extractor:
         for i in range(points[-1][0] + 1, x):
             for k in range(points[-1][1], y):
                 pixel = img.getpixel((i, k))
-                if np.sum(pixel) > 50:
+                if np.sum(pixel) > Color.black:
                     if k - points[-1][1] <= zm * 2:
                         points.append((i, k))
                         break
@@ -50,7 +51,7 @@ class Extractor:
         for i in range(x-1, 0, -1):
             for k in range(y-1, 0, -1):
                 pixel = img.getpixel((i, k))
-                if np.sum(pixel) > 50 and k > y/3:
+                if np.sum(pixel) > Color.black and k > y/3:
                     points.append((i, k))
                     break
             if points:
@@ -59,7 +60,7 @@ class Extractor:
         for k in range(points[-1][1] - 1, 0, -1):
             for i in range(points[-1][0], 0, -1):
                 pixel = img.getpixel((i, k))
-                if np.sum(pixel) > 50:
+                if np.sum(pixel) > Color.black:
                     if points[-1][0] - i <= zm * 2:
                         points.append((i, k))
                         break

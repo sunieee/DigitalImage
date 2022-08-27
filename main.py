@@ -8,9 +8,15 @@ import numpy as np
 from util import *
 from LineExtraction.tailor import Tailor
 from LineExtraction.seperate import Seperator
+from LineExtraction.split import Split
 import cv2
 from pic import Pic, base_folder
 from helper import *
+import click
+
+
+def ech(s, color=None):
+    click.echo(click.style(s, fg=color))
 
 
 # 注意 这里选择的父类 要和你UI文件窗体一样的类型
@@ -93,7 +99,7 @@ class MainWindow(QMainWindow):
             "jpg类型 (*.jpg);;png类型 (*.png);;bmp类型 (*.bmp);;raw类型 (*.raw *.data)" # 选择类型过滤项，过滤内容在括号中
         )
         if filePath:
-            print(filePath)
+            ech(filePath, 'cyan')
             t.save(filePath)
 
     def save(self):
@@ -256,8 +262,7 @@ class MainWindow(QMainWindow):
             self.show_array(arr)
 
 
-    @staticmethod
-    def get_input(s, default):
+    def get_input(self, s, default):
         def intfy(s):
             lis = [int(x) for x in s.split('~')]            
             return lis[0] if len(lis) == 1 else lis
@@ -416,10 +421,10 @@ class MainWindow(QMainWindow):
         if not h or not ok:
             h = 1
         if t.lis:
-            print('converting pdf to gif...')
+            ech('converting pdf to gif...', 'yellow')
             folder = t.lis
         else:
-            print('converting pictures to gif...')
+            ech('converting pictures to gif...', 'yellow')
             folder = [t.src for t in self.opened if t.endswith('.png') or t.endswith('.jpg')]
         print('valid pictures are:', folder)
         path = pic2gif(folder)
@@ -432,7 +437,7 @@ class MainWindow(QMainWindow):
             h = 150
         if t.lis:
             folder = generate_name('')
-            print(f'共{len(t.lis)}张图片，请耐心等待...')
+            ech(f'共{len(t.lis)}张图片，请耐心等待...', 'yellow')
             for f in os.listdir(t.folder):
                 remove_gray(os.path.join(t.folder, f), h, os.path.join(folder, f))
             
@@ -448,17 +453,28 @@ class MainWindow(QMainWindow):
         if not h or not ok:
             h = 2
         if t.lis:
-            print('converting pdf to gif...')
+            ech('converting pdf to gif...', 'yellow')
             folder = t.lis
         else:
-            print('converting pictures to gif...')
+            ech('converting pictures to gif...', 'yellow')
             folder = [t.src for t in self.opened if t.endswith('.png') or t.endswith('.jpg')]
         print('valid pictures are:', folder)
         path = concat(folder, h)
         self.show_output(path)
 
     def horizontal_split(self):
-        pass
+        t = self.get_current_pic()
+        if not t.lis:
+            s = Split(t.path)
+            self.show_output(s.visualize)
+            return
+
+        ech("You are spliting a pdf!!!", 'yellow')
+        folder = generate_name('')
+        for path in t.lis:
+            s = Split(path, output=folder)
+            self.show_output(s.visualize)
+        ech(f"result saved at {folder}", 'green')
 
     def left1(self):
         t = self.current_pic()
