@@ -51,7 +51,7 @@ Dependencies need to be installed before using python main.py:`pip install -r re
 
 After the program is opened, as shown in the figure below, it includes two panes of input and output, both of which have a fixed size of 700*700. The window can be zoomed in and out, but the size of the pane is fixed.
 
-[![image-20220710222933020](https://n.ye-sun.com/gallery/2022summer/202207102229732.png)](https://camo.githubusercontent.com/0cddcdae255557eec759eead311d990b47a1066f1457c5cd70c02b50c463fab1/68747470733a2f2f6e2e73756e69652e746f703a393030302f67616c6c6572792f3230323273756d6d65722f3230323230373130323232393733322e706e67)
+![image-20220710222933020](https://n.ye-sun.com/gallery/2022summer/202207102229732.png)
 
 The menu bar contains 5 main menus, and each menu has some specific functions, which correspond to all the requirements of the following large tasks one by one, and some functions have corresponding shortcut keys.
 
