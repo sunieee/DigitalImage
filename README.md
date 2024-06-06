@@ -51,7 +51,7 @@ Dependencies need to be installed before using python main.py:`pip install -r re
 
 After the program is opened, as shown in the figure below, it includes two panes of input and output, both of which have a fixed size of 700*700. The window can be zoomed in and out, but the size of the pane is fixed.
 
-[![image-20220710222933020](https://n.sunie.top:9000/gallery/2022summer/202207102229732.png)](https://camo.githubusercontent.com/0cddcdae255557eec759eead311d990b47a1066f1457c5cd70c02b50c463fab1/68747470733a2f2f6e2e73756e69652e746f703a393030302f67616c6c6572792f3230323273756d6d65722f3230323230373130323232393733322e706e67)
+[![image-20220710222933020](https://n.ye-sun.com/gallery/2022summer/202207102229732.png)](https://camo.githubusercontent.com/0cddcdae255557eec759eead311d990b47a1066f1457c5cd70c02b50c463fab1/68747470733a2f2f6e2e73756e69652e746f703a393030302f67616c6c6572792f3230323273756d6d65722f3230323230373130323232393733322e706e67)
 
 The menu bar contains 5 main menus, and each menu has some specific functions, which correspond to all the requirements of the following large tasks one by one, and some functions have corresponding shortcut keys.
 
@@ -63,9 +63,9 @@ The menu bar contains 5 main menus, and each menu has some specific functions, w
 - Extraction: Steps related to extracting curve data points, which does not yet support the "whole process of extracting curve data points"
 - Practical tool: mainly used for the PDF of the input box, if the current input is not PDF, it will be used for all input images, and output a PDF
 
-![image-20220710223520646](https://n.sunie.top:9000/gallery/2022summer/202207102235400.png)
+![image-20220710223520646](https://n.ye-sun.com/gallery/2022summer/202207102235400.png)
 
-![image-20220710230459430](https://n.sunie.top:9000/gallery/2022summer/202207102305110.png)
+![image-20220710230459430](https://n.ye-sun.com/gallery/2022summer/202207102305110.png)
 
 When running the program:
 
@@ -89,17 +89,17 @@ When running the program:
 
 There are various types of file formats, and four types of image formats and pdf formats are supported for opening and closing. In this way, the conversion between various image formats is realized, and the conversion from pdf to image is realized at the same time.
 
-[![image-20220710230757818](https://n.sunie.top:9000/gallery/2022summer/202207102307180.png)](https://camo.githubusercontent.com/db5f769170d04a068a243d9b1c3345ea40b23770da82ae84af21d32494b50c9e/68747470733a2f2f6e2e73756e69652e746f703a393030302f67616c6c6572792f3230323273756d6d65722f3230323230373130323330373138302e706e67)
+[![image-20220710230757818](https://n.ye-sun.com/gallery/2022summer/202207102307180.png)](https://camo.githubusercontent.com/db5f769170d04a068a243d9b1c3345ea40b23770da82ae84af21d32494b50c9e/68747470733a2f2f6e2e73756e69652e746f703a393030302f67616c6c6572792f3230323273756d6d65722f3230323230373130323330373138302e706e67)
 
 #### Basic operations on images
 
-![image-20220630230720121](https://n.sunie.top:9000/gallery/2022summer/202206302307886.png)
+![image-20220630230720121](https://n.ye-sun.com/gallery/2022summer/202206302307886.png)
 
 Addition will use all open input images (or current pdf) for addition, and finally use the maximum width and height of all images to be the size of the latest image.
 
 **Note** : Please do not use images with inconsistent channels to add points, it will cause the program to crash (can be converted to grayscale images in advance)
 
-![image-20220630230834085](https://n.sunie.top:9000/gallery/2022summer/202206302308093.png)
+![image-20220630230834085](https://n.ye-sun.com/gallery/2022summer/202206302308093.png)
 
 The effect of zooming and rendering will not change, but the actual size has changed, see the size in the upper right corner.
 
@@ -107,7 +107,7 @@ The effect of zooming and rendering will not change, but the actual size has cha
 
 Colors are visibly more vibrant:
 
-![image-20220628191431704](https://n.sunie.top:9000/gallery/2022summer/202206302316413.png)
+![image-20220628191431704](https://n.ye-sun.com/gallery/2022summer/202206302316413.png)
 
 ### Image Fourier transform and filtering
 
@@ -120,11 +120,11 @@ Observe the spectrogram of a typical image after FFT transformation
 
   - DFT
 
-    <img src="https://n.sunie.top:9000/gallery/2022summer/202206281712345.png" alt="image-20220627215141715" style="zoom:67%;" />
+    <img src="https://n.ye-sun.com/gallery/2022summer/202206281712345.png" alt="image-20220627215141715" style="zoom:67%;" />
 
   - pan, zoom
 
-    <img src="https://n.sunie.top:9000/gallery/2022summer/202206281712605.png" alt="image-20220627215247881" style="zoom:67%;" />
+    <img src="https://n.ye-sun.com/gallery/2022summer/202206281712605.png" alt="image-20220627215247881" style="zoom:67%;" />
 
 #### FFT
 
@@ -134,19 +134,19 @@ Through the menu bar>FFT>Fourier transform, output 3 pictures during the executi
 - 2DFT map of dynamic range compression (map the point with the highest value to brightness 255)
 - Output map of FFT inverse transformation
 
-![image-20220630231153611](https://n.sunie.top:9000/gallery/2022summer/202206302311110.png)
+![image-20220630231153611](https://n.ye-sun.com/gallery/2022summer/202206302311110.png)
 
 #### High-pass/low-pass filtering
 
 Support custom filter radius, select by interactive input, the results of high-pass and low-pass are as follows:
 
-![image-20220630232002932](https://n.sunie.top:9000/gallery/2022summer/202206302320811.png)
+![image-20220630232002932](https://n.ye-sun.com/gallery/2022summer/202206302320811.png)
 
 ### Representation of Fourier descriptors
 
 For the boundary on the XY plane in Figure 1, it is represented by a Fourier descriptor and reconstructed with different numbers of items
 
-![image-20220627215629337](https://n.sunie.top:9000/gallery/2022summer/202206272156275.png)
+![image-20220627215629337](https://n.ye-sun.com/gallery/2022summer/202206272156275.png)
 
 The Fourier descriptor is an image feature used to describe the characteristic parameters of the contour.
 
@@ -163,7 +163,7 @@ As shown in the figure above, a small number of Fourier descriptors can be used 
 3. Calculate the Fourier descriptor of the contour, and output the first 32 descriptors through the pane
 4. The number of descriptor items can be selected for reconstruction.
 
-![image-20220630232156686](https://n.sunie.top:9000/gallery/2022summer/202206302321671.png)
+![image-20220630232156686](https://n.ye-sun.com/gallery/2022summer/202206302321671.png)
 
 ### edge detection
 
@@ -172,11 +172,11 @@ edge detection
 - Program to realize image edge extraction based on typical differential operators (not less than Roberts, Sobel, Prewitt, Laplacian), able to read the content of image files, and output edge detection results after detection
 - Analyze and compare the characteristics of different operators
 
-![image-20220630233332598](https://n.sunie.top:9000/gallery/2022summer/202206302333920.png)
+![image-20220630233332598](https://n.ye-sun.com/gallery/2022summer/202206302333920.png)
 
-![image-20220630233039433](https://n.sunie.top:9000/gallery/2022summer/202206302330088.png)
+![image-20220630233039433](https://n.ye-sun.com/gallery/2022summer/202206302330088.png)
 
-![image-20220630233227582](https://n.sunie.top:9000/gallery/2022summer/202206302332421.png)
+![image-20220630233227582](https://n.ye-sun.com/gallery/2022summer/202206302332421.png)
 
 | operator  | Comparison of advantages and disadvantages                   |
 | --------- | ------------------------------------------------------------ |
@@ -192,7 +192,7 @@ edge detection
 
 Example of program running:
 
-![动画](https://n.sunie.top:9000/gallery/2022summer/202207092136731.gif)
+![动画](https://n.ye-sun.com/gallery/2022summer/202207092136731.gif)
 
 ### need
 
@@ -204,19 +204,19 @@ The image types involved can be mainly divided into the following three categori
 
 1) Simple lines
 
-![image-20220611175527031](https://n.sunie.top:9000/gallery/2022summer/202206111755722.png) 
+![image-20220611175527031](https://n.ye-sun.com/gallery/2022summer/202206111755722.png) 
 
 2) There are interfering lines (ie blue lines)
 
-![image-20220611175541345](https://n.sunie.top:9000/gallery/2022summer/202206111755536.png) 
+![image-20220611175541345](https://n.ye-sun.com/gallery/2022summer/202206111755536.png) 
 
 3) Complex lines (there are multiple target curves)
 
-![image-20220611175603750](https://n.sunie.top:9000/gallery/2022summer/202206111756856.png) 
+![image-20220611175603750](https://n.ye-sun.com/gallery/2022summer/202206111756856.png) 
 
 ### problem analysis
 
-![image-20220611181144776](https://n.sunie.top:9000/gallery/2022summer/202206111811628.png)
+![image-20220611181144776](https://n.ye-sun.com/gallery/2022summer/202206111811628.png)
 
 In the above example, all the input data have obvious characteristics, so it is easier to extract than ordinary curves. Input features include:
 
@@ -243,7 +243,7 @@ See `tailor.py`, the core idea is to find the x/y coordinate axis:
 3. Because there must be a coordinate scale on the other side of the coordinate axis, exclude the horizontal and vertical lines that are completely white on the left/bottom
 4. Determine the cropping box according to the coordinate axis and crop
 
-![image-20220709213315230](https://n.sunie.top:9000/gallery/2022summer/202207092133035.png)
+![image-20220709213315230](https://n.ye-sun.com/gallery/2022summer/202207092133035.png)
 
 ### Separate lines by color
 
@@ -257,18 +257,18 @@ Note: In order to facilitate the generation of a new image, the image is reverse
 
 | round | number of colors | color band                                                   |
 | ----- | ---------------- | ------------------------------------------------------------ |
-| 0     | 215              | ![image-20220707092403611](https://n.sunie.top:9000/gallery/2022summer/202207070924514.png) |
-| 1     | 1647             | <img src="https://n.sunie.top:9000/gallery/2022summer/202207102312188.png" alt="image-20220707092544177" style="zoom: 33%;" /> |
+| 0     | 215              | ![image-20220707092403611](https://n.ye-sun.com/gallery/2022summer/202207070924514.png) |
+| 1     | 1647             | <img src="https://n.ye-sun.com/gallery/2022summer/202207102312188.png" alt="image-20220707092544177" style="zoom: 33%;" /> |
 | 2     | 6986             | ——                                                           |
 | 3     | 9998             | ——                                                           |
 
-![image-20220709213412566](https://n.sunie.top:9000/gallery/2022summer/202207092134204.png)
+![image-20220709213412566](https://n.ye-sun.com/gallery/2022summer/202207092134204.png)
 
 ### order selection
 
 Select points from left to right on the line, always select the first point from top to bottom each time, but need to meet the requirements of monotonous decline. In this way, the selection of points can completely avoid the situation of selecting labels, and because the monotonous decline is limited, it is impossible for the jitter to be too large.
 
-![image-20220709213600083](https://n.sunie.top:9000/gallery/2022summer/202207092136826.png)
+![image-20220709213600083](https://n.ye-sun.com/gallery/2022summer/202207092136826.png)
 
 ### fit or interpolate
 
@@ -283,13 +283,13 @@ In the process of fitting according to the sample points, the curve does not nec
 
 It can be seen that this method does not represent the curve well.
 
-![image-20220709212917925](https://n.sunie.top:9000/gallery/2022summer/202207092129637.png)
+![image-20220709212917925](https://n.ye-sun.com/gallery/2022summer/202207092129637.png)
 
 #### interpolation
 
 The result obtained by interpolation is much easier and more accurate than finding a fitting function, but there may be jitter or unsmoothness, as in the four places circled in the figure, the interpolated curve will also jitter.
 
-![image-20220707230356099](https://n.sunie.top:9000/gallery/2022summer/202207072303511.png)
+![image-20220707230356099](https://n.ye-sun.com/gallery/2022summer/202207072303511.png)
 
 The solution to the jittering lines:
 
@@ -329,7 +329,7 @@ Take all grayscale values >thresh as rows containing content, and aggregate adja
 
 Visualization:
 
-![image-20220710121526274](https://n.sunie.top:9000/gallery/2022summer/202207101215852.png)
+![image-20220710121526274](https://n.ye-sun.com/gallery/2022summer/202207101215852.png)
 
 This method successfully finds all valid stave sequences. When segmenting, it can be segmented in the center of the gap. In particular, for the first group and the last group, take the mean value of all intervals.
 
