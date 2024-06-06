@@ -56,7 +56,7 @@
 
 程序打开后如下图所示，包含输入输出两个窗格，都是固定700*700大小，窗口可放大缩小，但窗格尺寸固定。
 
-![image-20220710222933020](https://n.sunie.top:9000/gallery/2022summer/202207102229732.png)
+![image-20220710222933020](https://n.ye-sun.com/gallery/2022summer/202207102229732.png)
 
 菜单栏包含5个主菜单，每个菜单中都有一些具体的功能，一一对应了下面大作业的所有需求，部分功能都相应的快捷键。
 
@@ -68,9 +68,9 @@
 - 提取：提取曲线数据点相关步骤，其中尚不支持“提取曲线数据点全流程”
 - 实用工具：主要是对输入框的PDF使用，如果当前输入不是PDF，则会对所有的输入图片使用，输出一个PDF
 
-![image-20220710223520646](https://n.sunie.top:9000/gallery/2022summer/202207102235400.png)
+![image-20220710223520646](https://n.ye-sun.com/gallery/2022summer/202207102235400.png)
 
-![image-20220710230459430](https://n.sunie.top:9000/gallery/2022summer/202207102305110.png)
+![image-20220710230459430](https://n.ye-sun.com/gallery/2022summer/202207102305110.png)
 
 在运行程序时：
 
@@ -94,17 +94,17 @@
 
 文件的格式种类多样，打开和关闭都支持四种类型的图片格式及pdf格式。通过这种方式实现了各种图片格式之间的转换，同时实现了pdf向图片的转换。
 
-![image-20220710230757818](https://n.sunie.top:9000/gallery/2022summer/202207102307180.png)
+![image-20220710230757818](https://n.ye-sun.com/gallery/2022summer/202207102307180.png)
 
 #### 图像的基本操作
 
-![image-20220630230720121](https://n.sunie.top:9000/gallery/2022summer/202206302307886.png)
+![image-20220630230720121](https://n.ye-sun.com/gallery/2022summer/202206302307886.png)
 
 加法会使用所有打开的输入图片（或者当前pdf）进行加法，最终会使用所有图中最大宽和高最为新图的尺寸。
 
 **注意**：请不要使用通道不一致的图片进行加分操作，会造成程序崩溃（可预先都转换为灰度图）
 
-![image-20220630230834085](https://n.sunie.top:9000/gallery/2022summer/202206302308093.png)
+![image-20220630230834085](https://n.ye-sun.com/gallery/2022summer/202206302308093.png)
 
 进行缩放呈现的效果不会改变，但实际的大小已经变了，见右上角的尺寸。
 
@@ -112,7 +112,7 @@
 
 色彩明显变得更加鲜艳：
 
-![image-20220628191431704](https://n.sunie.top:9000/gallery/2022summer/202206302316413.png)
+![image-20220628191431704](https://n.ye-sun.com/gallery/2022summer/202206302316413.png)
 
 
 
@@ -127,11 +127,11 @@
 
   - DFT
 
-    <img src="https://n.sunie.top:9000/gallery/2022summer/202206281712345.png" alt="image-20220627215141715" style="zoom:67%;" />
+    <img src="https://n.ye-sun.com/gallery/2022summer/202206281712345.png" alt="image-20220627215141715" style="zoom:67%;" />
 
   - 平移、缩放
 
-    <img src="https://n.sunie.top:9000/gallery/2022summer/202206281712605.png" alt="image-20220627215247881" style="zoom:67%;" />
+    <img src="https://n.ye-sun.com/gallery/2022summer/202206281712605.png" alt="image-20220627215247881" style="zoom:67%;" />
 
 #### FFT
 
@@ -141,19 +141,19 @@
 - 动态范围压缩的2DFT图（将值最高的点映射成亮度255）
 - FFT反变换的输出图
 
-![image-20220630231153611](https://n.sunie.top:9000/gallery/2022summer/202206302311110.png)
+![image-20220630231153611](https://n.ye-sun.com/gallery/2022summer/202206302311110.png)
 
 #### 高通/低通滤波
 
 支持自定义滤波半径，通过交互式输入方式选择，高通、低通的结果分别如下：
 
-![image-20220630232002932](https://n.sunie.top:9000/gallery/2022summer/202206302320811.png)
+![image-20220630232002932](https://n.ye-sun.com/gallery/2022summer/202206302320811.png)
 
 ### 傅里叶描述子的表示
 
 对于图1中XY平面上的边界，对其进行傅里叶描述子的表示，用不同的项数重构
 
-![image-20220627215629337](https://n.sunie.top:9000/gallery/2022summer/202206272156275.png)
+![image-20220627215629337](https://n.ye-sun.com/gallery/2022summer/202206272156275.png)
 
 傅里叶描述子是一种图像特征，用来描述轮廓的特征参数。
 
@@ -171,7 +171,7 @@
 3. 计算轮廓的傅里叶描述子，通过窗格方式输出前32个描述子
 4. 可选择描述子的项数进行重构。
 
-![image-20220630232156686](https://n.sunie.top:9000/gallery/2022summer/202206302321671.png)
+![image-20220630232156686](https://n.ye-sun.com/gallery/2022summer/202206302321671.png)
 
 
 
@@ -182,11 +182,11 @@
 - 编程实现基于典型微分算子（不少于Roberts、Sobel、Prewitt、拉普拉斯算子）的图像边缘提取，能够读取图像文件内容，进行检测后输出边缘检测结果
 - 分析比较不同算子的特性
 
-![image-20220630233332598](https://n.sunie.top:9000/gallery/2022summer/202206302333920.png)
+![image-20220630233332598](https://n.ye-sun.com/gallery/2022summer/202206302333920.png)
 
-![image-20220630233039433](https://n.sunie.top:9000/gallery/2022summer/202206302330088.png)
+![image-20220630233039433](https://n.ye-sun.com/gallery/2022summer/202206302330088.png)
 
-![image-20220630233227582](https://n.sunie.top:9000/gallery/2022summer/202206302332421.png)
+![image-20220630233227582](https://n.ye-sun.com/gallery/2022summer/202206302332421.png)
 
 | 算子      | 优缺点比较                                                   |
 | --------- | ------------------------------------------------------------ |
@@ -202,7 +202,7 @@
 
 程序运行示例：
 
-![动画](https://n.sunie.top:9000/gallery/2022summer/202207092136731.gif)
+![动画](https://n.ye-sun.com/gallery/2022summer/202207092136731.gif)
 
 ###  需求
 
@@ -214,19 +214,19 @@
 
 1）简单线条
 
-![image-20220611175527031](https://n.sunie.top:9000/gallery/2022summer/202206111755722.png) 
+![image-20220611175527031](https://n.ye-sun.com/gallery/2022summer/202206111755722.png) 
 
 2）存在干扰线条（即蓝色线条）
 
-![image-20220611175541345](https://n.sunie.top:9000/gallery/2022summer/202206111755536.png) 
+![image-20220611175541345](https://n.ye-sun.com/gallery/2022summer/202206111755536.png) 
 
 3）复杂线条（存在多条目标曲线）
 
-![image-20220611175603750](https://n.sunie.top:9000/gallery/2022summer/202206111756856.png) 
+![image-20220611175603750](https://n.ye-sun.com/gallery/2022summer/202206111756856.png) 
 
 ### 问题分析
 
-![image-20220611181144776](https://n.sunie.top:9000/gallery/2022summer/202206111811628.png)
+![image-20220611181144776](https://n.ye-sun.com/gallery/2022summer/202206111811628.png)
 
 在上述样例中，所有输入数据有明显的特征，因此相对于普通的曲线提取更加容易。输入特征包含：
 
@@ -253,7 +253,7 @@
 3. 因为坐标轴另外一侧一定有坐标刻度，排除左/下完全为白色的水平和竖直线
 4. 根据坐标轴确定裁剪方框并裁剪
 
-![image-20220709213315230](https://n.sunie.top:9000/gallery/2022summer/202207092133035.png)
+![image-20220709213315230](https://n.ye-sun.com/gallery/2022summer/202207092133035.png)
 
 ### 按色彩分离线条
 
@@ -267,18 +267,18 @@
 
 | round | 色彩数 | 色彩带                                                       |
 | ----- | ------ | ------------------------------------------------------------ |
-| 0     | 215    | ![image-20220707092403611](https://n.sunie.top:9000/gallery/2022summer/202207070924514.png) |
-| 1     | 1647   | <img src="https://n.sunie.top:9000/gallery/2022summer/202207102312188.png" alt="image-20220707092544177" style="zoom: 33%;" /> |
+| 0     | 215    | ![image-20220707092403611](https://n.ye-sun.com/gallery/2022summer/202207070924514.png) |
+| 1     | 1647   | <img src="https://n.ye-sun.com/gallery/2022summer/202207102312188.png" alt="image-20220707092544177" style="zoom: 33%;" /> |
 | 2     | 6986   | ——                                                           |
 | 3     | 9998   | ——                                                           |
 
-![image-20220709213412566](https://n.sunie.top:9000/gallery/2022summer/202207092134204.png)
+![image-20220709213412566](https://n.ye-sun.com/gallery/2022summer/202207092134204.png)
 
 ### 顺序选点
 
 从线上从左到右选点，每次总是选从上到下第一个点，但需要满足单调下降的需求。这样选点能够完全避免选到标签的情况，并且因为限制了单调下降，个不可能出现抖动程度过大。
 
-![image-20220709213600083](https://n.sunie.top:9000/gallery/2022summer/202207092136826.png)
+![image-20220709213600083](https://n.ye-sun.com/gallery/2022summer/202207092136826.png)
 
 ### 拟合或插值
 
@@ -293,13 +293,13 @@
 
 可见这种方式并不能很好地表示曲线。
 
-![image-20220709212917925](https://n.sunie.top:9000/gallery/2022summer/202207092129637.png)
+![image-20220709212917925](https://n.ye-sun.com/gallery/2022summer/202207092129637.png)
 
 #### 插值
 
 插值得出的结果要比找到拟合函数容易准确得多，但可能出现抖动或不平滑的现象，如图中圈出的四个地方，插值出来的曲线也会抖动。
 
-![image-20220707230356099](https://n.sunie.top:9000/gallery/2022summer/202207072303511.png)
+![image-20220707230356099](https://n.ye-sun.com/gallery/2022summer/202207072303511.png)
 
 抖动线条的解决方式：
 
@@ -339,7 +339,7 @@
 
 可视化效果：
 
-![image-20220710121526274](https://n.sunie.top:9000/gallery/2022summer/202207101215852.png)
+![image-20220710121526274](https://n.ye-sun.com/gallery/2022summer/202207101215852.png)
 
 这种方法成功找到了所有有效的五线谱序列，在分割的时候，在间隙的的正中央进行分割即可特别的，对于第一组和最后一组，取所有间隔的均值。
 
