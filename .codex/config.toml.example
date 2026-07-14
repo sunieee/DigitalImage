@@ -1,0 +1,4 @@
+[mcp_servers.digital_image]
+command = "python"
+args = ["mcp_server.py"]
+cwd = "/home/kaititech/code/DigitalImage"

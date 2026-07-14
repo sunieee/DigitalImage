@@ -6,3 +6,4 @@ pdf2image
 tqdm
 scipy
 matplotlib
+mcp
