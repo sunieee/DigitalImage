@@ -3,7 +3,8 @@ import cv2
 import os
 import time
 
-cache_folder = os.path.join(os.path.expanduser("~"), 'AppData/Roaming/DigitalImage')
+project_folder = os.path.dirname(os.path.abspath(__file__))
+cache_folder = os.path.join(project_folder, 'data', 'work')
 os.makedirs(cache_folder, exist_ok=True)
 
 def generate_name(suffix='.png'):

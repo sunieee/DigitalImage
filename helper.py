@@ -1,6 +1,5 @@
 from PIL import Image
 import os
-from moviepy.editor import ImageSequenceClip
 from util import generate_name
 from pdf2image import convert_from_path
 from pdf2image.exceptions import PDFInfoNotInstalledError
@@ -10,6 +9,7 @@ import re
 
 
 re_digits = re.compile(r'(\d+)')
+IMAGE_SUFFIXES = ('.png', '.jpg', '.jpeg', '.bmp')
 
 
 def embedded_numbers(s):    
@@ -22,7 +22,7 @@ def get_folder(folder, deep=False):
     files = []
     if type(folder) == list:
         for t in folder:
-            if t.endswith('.png') or t.endswith('.jpg'):
+            if t.lower().endswith(IMAGE_SUFFIXES):
                 if not os.path.exists(t):
                     print(f"file {t} not exists. Ignore!")
                 else:
@@ -35,10 +35,10 @@ def get_folder(folder, deep=False):
             if deep:
                 files += get_folder(os.path.join(folder, t), True)
             else:
-                if t.endswith('.png') or t.endswith('.jpg'):
+                if t.lower().endswith(IMAGE_SUFFIXES):
                     files.append(os.path.join(folder, t))
 
-    elif folder.endswith('.png') or folder.endswith('.jpg'):
+    elif folder.lower().endswith(IMAGE_SUFFIXES):
         files.append(folder)
 
     return sorted(files, key=embedded_numbers) 
@@ -62,10 +62,17 @@ def pic2pdf(folder, deep=False, path=None):
 
 def pic2gif(folder, deep=False, fps=1, path=None):
     names = get_folder(folder, deep=deep)
-    clip = ImageSequenceClip(names, fps=fps)
     if path is None:
         path = generate_name('.gif')
-    clip.write_gif(path)
+    frames = [Image.open(name).convert("P", palette=Image.ADAPTIVE) for name in names]
+    duration = int(1000 / fps)
+    frames[0].save(
+        path,
+        save_all=True,
+        append_images=frames[1:],
+        duration=duration,
+        loop=0,
+    )
     return path
 
 

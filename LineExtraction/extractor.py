@@ -99,9 +99,9 @@ class Extractor:
             self.cordinate.remove(t)
         print(f"坐标点对共{len(self.cordinate)}个，隔5样例：", self.cordinate[::5])
             
-        csv = generate_name('.csv')
-        print(f"曲线坐标点已保存在：{csv}")
-        with open(csv, 'w') as f:
+        self.csv_path = generate_name('.csv')
+        print(f"曲线坐标点已保存在：{self.csv_path}")
+        with open(self.csv_path, 'w') as f:
             f.write("x,y\n")
             for p in self.cordinate:
                 f.write(f"{p[0]},{p[1]}\n")
@@ -144,6 +144,7 @@ class Extractor:
         pl.legend(loc = 'lower right')
         path = generate_name()
         pl.savefig(path)
+        pl.close()
         return path
 
 

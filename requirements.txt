@@ -1,11 +1,8 @@
-PyQt5
-opencv-python==4.5.3.56
+streamlit
+opencv-python-headless
 numpy
-moviepy
+Pillow
 pdf2image
 tqdm
-numpy
 scipy
 matplotlib
-click
-python-poppler
