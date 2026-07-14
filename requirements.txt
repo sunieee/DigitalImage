@@ -6,6 +6,6 @@ pdf2image
 tqdm
 numpy
 scipy
-pylab
 matplotlib
 click
+python-poppler

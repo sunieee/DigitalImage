@@ -74,13 +74,16 @@ class MainWindow(QMainWindow):
             self.openTarget(p)
 
     def openTarget(self, path):
-        ix = len(self.opened) + 1
-        pic = Pic(path, self)
-        self.opened.append(pic)
-        print(pic)
+        try:
+            ix = len(self.opened) + 1
+            pic = Pic(path, self)
+            self.opened.append(pic)
+            print(pic)
 
-        self.ui.tabWidget.addTab(pic.create_widget(), str(ix))
-        self.ui.tabWidget.setCurrentIndex(ix)
+            self.ui.tabWidget.addTab(pic.create_widget(), str(ix))
+            self.ui.tabWidget.setCurrentIndex(ix)
+        except Exception as exc:
+            self.warning(str(exc))
         # Pyside2用不了！！！
 
     def warning(self, text):

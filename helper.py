@@ -3,6 +3,7 @@ import os
 from moviepy.editor import ImageSequenceClip
 from util import generate_name
 from pdf2image import convert_from_path
+from pdf2image.exceptions import PDFInfoNotInstalledError
 from tqdm import tqdm
 import numpy as np
 import re
@@ -70,7 +71,15 @@ def pic2gif(folder, deep=False, fps=1, path=None):
 
 def pdf2pic(pdf, dpi=144):
     folder = generate_name('')
-    for i, page in tqdm(enumerate(convert_from_path(pdf, dpi=dpi))):
+    try:
+        pages = convert_from_path(pdf, dpi=dpi)
+    except PDFInfoNotInstalledError as exc:
+        raise RuntimeError(
+            'PDF conversion failed: Poppler is not installed or not in PATH. '
+            'Install Poppler for Windows and add its bin directory to PATH, then reopen the PDF.'
+        ) from exc
+
+    for i, page in tqdm(enumerate(pages)):
         page.save(os.path.join(folder, f'{i}.jpg'), 'JPEG')
     return folder
 
