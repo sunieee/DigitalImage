@@ -37,10 +37,11 @@ make run
 
 ## MCP 工具
 
-本项目提供一个 stdio MCP server：
+MCP server 放在工作区根目录 `/home/kaititech/code`，这样 Codex 或 Claude Code 从外层工作区启动时也能访问：
 
 ```bash
-python mcp_server.py
+cd /home/kaititech/code
+python digital_image_mcp_server.py
 ```
 
 暴露两个工具：
@@ -48,24 +49,17 @@ python mcp_server.py
 - `extract_curve_points`：对单张曲线图提取数据点，输出 CSV 和插值图
 - `split_horizontal_images`：对多张图片执行水平分割，输出可视化图和切分图片
 
-Claude Code 可直接读取仓库内的 `.mcp.json`。也可以手动添加：
+Claude Code 可读取工作区根目录的 `/home/kaititech/code/.mcp.json`。也可以手动添加：
 
 ```bash
-claude mcp add digital-image -- python /home/kaititech/code/DigitalImage/mcp_server.py
+claude mcp add digital-image --cwd /home/kaititech/code -- python digital_image_mcp_server.py
 ```
 
-Codex 可使用项目配置示例：
-
-```bash
-mkdir -p .codex
-cp .codex/config.toml.example .codex/config.toml
-```
-
-也可以添加到全局 Codex 配置中：
+Codex 可使用工作区根目录的 `/home/kaititech/code/.codex/config.toml`，或将同样内容添加到全局 Codex 配置中：
 
 ```toml
 [mcp_servers.digital_image]
 command = "python"
-args = ["mcp_server.py"]
-cwd = "/home/kaititech/code/DigitalImage"
+args = ["digital_image_mcp_server.py"]
+cwd = "/home/kaititech/code"
 ```
